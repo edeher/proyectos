@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputScript name="script.js" library="js" />
+</h:head>
+<body>
+	<ui:insert name="header">
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage library="images" name="load.gif" />
+		</p:dialog>
+
+		<h:form id="frmMenu">
+			<p:menubar autoDisplay="false" >
+				<p:menuitem icon="ui-icon-home" value="Persona" action="index?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-person" value="Area" action="area?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-document" value="menu" action="menu?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-calculator" value="menu Item" action="menuitem?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-person" value="Usuario" action="usuario?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-person" value="Perfil" action="perfil?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-contact" value="Tipo Tramite" action="tipotramite?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-plusthick" value="Item para Tramite" action="itemtipotramite?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-plusthick" value="Item " action="item?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-clipboard" value="Cargo " action="cargo?faces-redirect=true"></p:menuitem>
+				<f:facet name="options">
+					<h:panelGrid columns="2">
+					<p:clock pattern="h:mm:ss a dd/MM/yyyy" mode="server"/>
+					<p:commandButton icon="ui-icon-gear"   />
+					</h:panelGrid>
+				</f:facet>
+				
+			</p:menubar>
+			
+			
+		</h:form>
+	</ui:insert>
+
+
+
+	<ui:insert name="content">
+
+	</ui:insert>
+
+
+
+	<ui:insert name="footer">
+		<div>Desarrollado por Edeher y Juan Diego</div>
+		<div>Copyright © pon.c, 2018. Todos los derechos reservados</div>
+		<div>
+			<a href="">Facebook</a> <a href="">Youtube</a> <a href="">Twitter</a>
+		</div>
+	</ui:insert>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+		<h:form id="frm" enctype="multipart/form-data">
+		
+			<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}"
+				var="pro" rows="10">
+				<p:column headerText="id">
+					<p:outputLabel value="#{pro.idProyecto}" />
+				</p:column >
+				<p:column headerText="nombre">
+					<p:outputLabel value="#{pro.nombre}"/>
+				</p:column>
+				<p:column headerText="duracion">
+					<p:outputLabel value="#{pro.perfilduracion}"/>
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

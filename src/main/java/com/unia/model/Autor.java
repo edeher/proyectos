@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="autores")
-public class Autores implements Serializable{
+public class Autor implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -153,7 +153,7 @@ public class Autores implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Autores other = (Autores) obj;
+		Autor other = (Autor) obj;
 		if (idAutor != other.idAutor)
 			return false;
 		return true;
