@@ -7,6 +7,7 @@
 
 <h:head>
 	<h:outputScript name="script.js" library="js" />
+	<h:outputScript name="calendar.js" library="js" />
 </h:head>
 <body>
 	<ui:insert name="header">
@@ -20,16 +21,8 @@
 
 		<h:form id="frmMenu">
 			<p:menubar autoDisplay="false" >
-				<p:menuitem icon="ui-icon-home" value="Persona" action="index?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-person" value="Area" action="area?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-document" value="menu" action="menu?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-calculator" value="menu Item" action="menuitem?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-person" value="Usuario" action="usuario?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-person" value="Perfil" action="perfil?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-contact" value="Tipo Tramite" action="tipotramite?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-plusthick" value="Item para Tramite" action="itemtipotramite?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-plusthick" value="Item " action="item?faces-redirect=true"></p:menuitem>
-				<p:menuitem icon="ui-icon-clipboard" value="Cargo " action="cargo?faces-redirect=true"></p:menuitem>
+				<p:menuitem icon="ui-icon-home" value="Proyecto" action="index?faces-redirect=true"></p:menuitem>
+			
 				<f:facet name="options">
 					<h:panelGrid columns="2">
 					<p:clock pattern="h:mm:ss a dd/MM/yyyy" mode="server"/>

@@ -37,7 +37,7 @@ public class Proyecto implements Serializable{
 	private String tiempovigencia;
 	
 	@Column(name="estado", columnDefinition="char(1)", nullable=false)
-	private String estado;
+	private String estado="1";
 
 	public int getIdProyecto() {
 		return idProyecto;
