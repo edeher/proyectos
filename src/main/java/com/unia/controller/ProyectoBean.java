@@ -43,16 +43,16 @@ public class ProyectoBean implements Serializable {
 	public void operar() {
 		try {
 			
-			Calendar cal1= Calendar.getInstance();
-			cal1.setTime(fechaSelecionada1);
-			Calendar cal2= Calendar.getInstance();
-			cal2.setTime(fechaSelecionada2);
-			
-			LocalDate localdate1=LocalDate.of(cal1.get(Calendar.YEAR), cal1.get(Calendar.MONTH), cal1.get(Calendar.DATE));
-			LocalDate localdate2=LocalDate.of(cal2.get(Calendar.YEAR), cal2.get(Calendar.MONTH), cal2.get(Calendar.DATE));
-			
-			proyecto.setFechaPresentacion(localdate1);
-			proyecto.setFechaInicio(localdate2);
+//			Calendar cal1= Calendar.getInstance();
+//			cal1.setTime(fechaSelecionada1);
+//			Calendar cal2= Calendar.getInstance();
+//			cal2.setTime(fechaSelecionada2);
+//			
+//			LocalDate localdate1=LocalDate.of(cal1.get(Calendar.YEAR), cal1.get(Calendar.MONTH), cal1.get(Calendar.DATE));
+//			LocalDate localdate2=LocalDate.of(cal2.get(Calendar.YEAR), cal2.get(Calendar.MONTH), cal2.get(Calendar.DATE));
+//			
+//			proyecto.setFechaPresentacion(localdate1);
+//			proyecto.setFechaInicio(localdate2);
 			serviceProyecto.registrar(proyecto);
 			
 			
@@ -63,13 +63,13 @@ public class ProyectoBean implements Serializable {
 	public void selecionar(Proyecto t) {
 		try {
 			this.proyecto=serviceProyecto.listarPorId(t);
-			Calendar cal1= Calendar.getInstance();
-			Calendar cal2= Calendar.getInstance();
-			cal1.set(proyecto.getFechaPresentacion().getYear(),proyecto.getFechaPresentacion().getMonthValue(),proyecto.getFechaPresentacion().getDayOfMonth() );
-			cal2.set(proyecto.getFechaInicio().getYear(),proyecto.getFechaInicio().getMonthValue(),proyecto.getFechaInicio().getDayOfMonth() );
-			
-			this.fechaSelecionada1=cal1.getTime();
-			this.fechaSelecionada2=cal2.getTime();
+//			Calendar cal1= Calendar.getInstance();
+//			Calendar cal2= Calendar.getInstance();
+//			cal1.set(proyecto.getFechaPresentacion().getYear(),proyecto.getFechaPresentacion().getMonthValue(),proyecto.getFechaPresentacion().getDayOfMonth() );
+//			cal2.set(proyecto.getFechaInicio().getYear(),proyecto.getFechaInicio().getMonthValue(),proyecto.getFechaInicio().getDayOfMonth() );
+//			
+//			this.fechaSelecionada1=cal1.getTime();
+//			this.fechaSelecionada2=cal2.getTime();
 			
 		} catch (Exception e) {
 			// TODO: handle exception

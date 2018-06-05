@@ -2,6 +2,7 @@ package com.unia.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="proyecto")
@@ -21,11 +24,13 @@ public class Proyecto implements Serializable{
 	@Column(name="nombre", length=1500, nullable=false)
 	private String nombre;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="fechaPresentacion", nullable=false)
-	private LocalDate fechaPresentacion;
+	private Date fechaPresentacion;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="fechaInicio", nullable=false)
-	private LocalDate fechaInicio;
+	private Date fechaInicio;
 	
 	@Column(name="tipofinanaciamiento", length=2, nullable=false)
 	private String tipofinanaciamiento;
@@ -55,19 +60,21 @@ public class Proyecto implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public LocalDate getFechaPresentacion() {
+	
+
+	public Date getFechaPresentacion() {
 		return fechaPresentacion;
 	}
 
-	public void setFechaPresentacion(LocalDate fechaPresentacion) {
+	public void setFechaPresentacion(Date fechaPresentacion) {
 		this.fechaPresentacion = fechaPresentacion;
 	}
 
-	public LocalDate getFechaInicio() {
+	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(LocalDate fechaInicio) {
+	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
