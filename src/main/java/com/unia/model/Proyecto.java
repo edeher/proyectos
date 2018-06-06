@@ -32,8 +32,8 @@ public class Proyecto implements Serializable{
 	@Column(name="fechaInicio", nullable=false)
 	private Date fechaInicio;
 	
-	@Column(name="tipofinanaciamiento", length=2, nullable=false)
-	private String tipofinanaciamiento;
+	@Column(name="tipofinanciamiento", length=2, nullable=false)
+	private String tipofinanciamiento;
 	
 	@Column(name="perfilduracion", length=8, nullable=false)
 	private String perfilduracion;
@@ -78,12 +78,12 @@ public class Proyecto implements Serializable{
 		this.fechaInicio = fechaInicio;
 	}
 
-	public String getTipofinanaciamiento() {
-		return tipofinanaciamiento;
+	public String getTipofinanciamiento() {
+		return tipofinanciamiento;
 	}
 
-	public void setTipofinanaciamiento(String tipofinanaciamiento) {
-		this.tipofinanaciamiento = tipofinanaciamiento;
+	public void setTipofinanciamiento(String tipofinanciamiento) {
+		this.tipofinanciamiento = tipofinanciamiento;
 	}
 
 	public String getPerfilduracion() {

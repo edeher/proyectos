@@ -2,6 +2,7 @@ package com.unia.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,16 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="objetivos")
+@Table(name="objetivo")
 public class Objetivo implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idObjetivo;
 	
+	@Column(name="descripcion", length=500,nullable=false)
+	private String descripcion;
+		
 	@ManyToOne
 	@JoinColumn(name="idProyecto", nullable=false)
 	private Proyecto proyecto;
+	
 
 	public int getIdObjetivo() {
 		return idObjetivo;
@@ -44,6 +49,15 @@ public class Objetivo implements Serializable{
 		int result = 1;
 		result = prime * result + idObjetivo;
 		return result;
+	}
+
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	@Override

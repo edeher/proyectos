@@ -7,6 +7,28 @@
 
 <h:head></h:head> 
 <body> 
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+		
+		<h:form id="frm">
+		<p:commandButton value="nuevo" oncomplete="PF('wdlgObjetivo'):show();"/>
+		<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}" var="ob">
+			<p:column headerText="id"/>
+			<p:outputLabel value="#{ob.idObjetivo }"/>
+			<p:column headerText="Descripcion"/>
+			<p:outputLabel value="#{ob.descripcion }"/>
+			<p:column headerText="Proyecto"/>
+			<p:outputLabel value="#{ob.proyecto.nombre }"/>
+		
+		</p:dataTable>
+		<p:dialog>
+		
+		
+		</p:dialog>
+		</h:form>
+		
+		</ui:define>
+	</ui:composition>
 
 </body> 
 </html>
