@@ -35,7 +35,7 @@
 					<p:column headerText="duracion">
 						<p:outputLabel value="#{pro.perfilduracion}" />
 					</p:column>
-					<p:column>
+					<p:column style="width:30px">
 						<p:commandLink actionListener="#{proyectoBean.selecionar(pro)}"
 							oncomplete="PF('wdlgProyecto').show();" update="frm:dlgProyecto">
 							<p:graphicImage library="images" name="edit.jpg" />

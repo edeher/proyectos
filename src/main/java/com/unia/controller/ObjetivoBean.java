@@ -68,6 +68,22 @@ public class ObjetivoBean implements Serializable{
 		}
 	}
 	
+	public void operar() {
+		try {
+			if(objetivo.getIdObjetivo()>0) {
+				objetivo.setProyecto(proyecto);
+				serviceobjetivo.modificar(objetivo);
+			}else {
+				objetivo.setProyecto(proyecto);
+				serviceobjetivo.registrar(objetivo);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
 	public Objetivo getObjetivo() {
 		return objetivo;
 	}

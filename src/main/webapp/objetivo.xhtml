@@ -1,34 +1,72 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
-		
-		<h:form id="frm">
-		<p:commandButton value="nuevo" oncomplete="PF('wdlgObjetivo'):show();"/>
-		<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}" var="ob">
-			<p:column headerText="id"/>
-			<p:outputLabel value="#{ob.idObjetivo }"/>
-			<p:column headerText="Descripcion"/>
-			<p:outputLabel value="#{ob.descripcion }"/>
-			<p:column headerText="Proyecto"/>
-			<p:outputLabel value="#{ob.proyecto.nombre }"/>
-		
-		</p:dataTable>
-		<p:dialog>
-		
-		
-		</p:dialog>
-		</h:form>
-		
+
+			<h:form id="frm">
+				<p:commandButton value="nuevo"
+					oncomplete="PF('wdlgObjetivo').show();" />
+				<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}"
+					var="ob">
+					<p:column headerText="id">
+						<p:outputLabel value="#{ob.idObjetivo }" />
+					</p:column>
+					<p:column headerText="Descripcion">
+						<p:outputLabel value="#{ob.descripcion }" />
+					</p:column>
+					<p:column headerText="Proyecto">
+						<p:outputLabel value="#{ob.proyecto.nombre }" />
+					</p:column>
+					<p:column style="width:30px">
+						<p:commandLink actionListener="#{objetivoBean.seleccionar(ob)}"
+							oncomplete="PF('wdlgObjetivo').show();" update="frm:dlgObjetivo">
+							<p:graphicImage library="images" name="edit.jpg" />
+
+						</p:commandLink>
+
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog id="dlgObjetivo" widgetVar="wdlgObjetivo" modal="true">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Proyecto" />
+						<p:selectOneMenu id="cboProyecto" value="#{objetivoBean.proyecto}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{objetivoBean.lstProyecto}" var="pr"
+								itemLabel="#{pr.nombre}" itemValue="#{pr}" />
+
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Descripcion" />
+						<p:inputTextarea value="#{objetivoBean.objetivo.descripcion}"
+							 counter="txtContador" maxlength="100" counterTemplate="{0} carcateres restantes" autoResize="false"/>
+						<h:column/>
+						<h:outputText id="txtContador" />
+
+					</p:panelGrid>
+					<h:panelGroup layout="block" style="float:right">
+						<p:commandButton value="Aceptar"
+							actionListener="#{objetivoBean.operar()}" ajax="false"
+							action="objetivo?faces-redirect=true" />
+						<p:commandButton value="Cancelar" immediate="true"
+							onclick="PF('wdlgObjetivo').hide();" />
+					</h:panelGroup>
+
+				</p:dialog>
+
+			</h:form>
+
 		</ui:define>
 	</ui:composition>
 
-</body> 
+</body>
 </html>
