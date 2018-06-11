@@ -24,6 +24,16 @@
 					<p:column headerText="Proyecto">
 						<p:outputLabel value="#{ob.proyecto.nombre }" />
 					</p:column>
+					<p:column headerText="estado" style="width:120px">
+						<p:outputLabel value="#{ob.estado}" >
+							<f:converter converterId="estadoConverter2" /> 
+							<p:graphicImage library="images" name="check.jpg" rendered="#{ob.estado eq in}"/>
+							<p:graphicImage library="images" name="close.png" rendered="#{ob.estado eq co}"/>
+						</p:outputLabel>
+						
+					</p:column>
+					
+					
 					<p:column style="width:30px">
 						<p:commandLink actionListener="#{objetivoBean.seleccionar(ob)}"
 							oncomplete="PF('wdlgObjetivo').show();" update="frm:dlgObjetivo">
@@ -51,6 +61,14 @@
 							 counter="txtContador" maxlength="100" counterTemplate="{0} carcateres restantes" autoResize="false"/>
 						<h:column/>
 						<h:outputText id="txtContador" />
+						
+						<p:outputLabel value="estado" style="font-weight:bold;" />
+						<p:selectOneMenu id="Jefe" value="#{objetivoBean.objetivo.estado}">
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
+							<f:selectItem itemLabel="iniciado" itemValue="in"/>
+							<f:selectItem itemLabel="completado" itemValue="co"/>
+							
+						</p:selectOneMenu>
 
 					</p:panelGrid>
 					<h:panelGroup layout="block" style="float:right">

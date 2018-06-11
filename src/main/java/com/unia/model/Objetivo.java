@@ -26,6 +26,9 @@ public class Objetivo implements Serializable{
 	@JoinColumn(name="idProyecto", nullable=false)
 	private Proyecto proyecto;
 	
+	@Column(name="estado", columnDefinition="char(2)", nullable=false)
+	private String estado="in";
+	
 
 	public int getIdObjetivo() {
 		return idObjetivo;
@@ -58,6 +61,15 @@ public class Objetivo implements Serializable{
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	@Override
