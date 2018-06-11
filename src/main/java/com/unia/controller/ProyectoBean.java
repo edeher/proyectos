@@ -53,7 +53,14 @@ public class ProyectoBean implements Serializable {
 //			
 //			proyecto.setFechaPresentacion(localdate1);
 //			proyecto.setFechaInicio(localdate2);
-			serviceProyecto.registrar(proyecto);
+			
+			if(proyecto.getIdProyecto()>0) {
+				serviceProyecto.modificar(proyecto);
+			}else {
+				serviceProyecto.registrar(proyecto);
+				
+			}
+			
 			
 			
 		} catch (Exception e) {

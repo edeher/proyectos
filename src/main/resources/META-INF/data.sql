@@ -4,5 +4,7 @@ insert into proyecto (estado,fechaInicio,fechaPresentacion,nombre,perfilduracion
 
 insert into objetivo (descripcion,idProyecto) values('aca pes',1)
 
+insert into componente (estado,nombre,idObjetivo) values('1','objetivo 1',1)
+
 
 

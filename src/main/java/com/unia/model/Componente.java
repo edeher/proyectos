@@ -27,7 +27,7 @@ public class Componente implements Serializable{
 	private String nombre;
 	
 	@Column(name="estado", columnDefinition="char(1)", nullable=false)
-	private String estado;
+	private String estado="1";
 
 	public int getIdComponente() {
 		return idComponente;

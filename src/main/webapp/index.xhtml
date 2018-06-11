@@ -55,25 +55,21 @@
 
 						<p:outputLabel value="Fecha Presentacion" style="font-weight: bold;" />
 						<p:calendar id="txtFechaPresen"
-							value="#{proyectoBean.proyecto.fechaPresentacion}" required="true"
-							requiredMessage="Debe indicar una fecha de presentacion "
-							rendered="#{proyectoBean.proyecto.idProyecto == 0}"
-							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999" />
-						<p:outputLabel value="#{proyectoBean.proyecto.fechaPresentacion}"
-							rendered="#{proyectoBean.proyecto.idProyecto != 0}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
+							value="#{proyectoBean.proyecto.fechaPresentacion}" 
+							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999" >
+						
+							</p:calendar>
+					
 
 						<p:outputLabel value="Fecha Inicio" style="font-weight: bold;" />
 						<p:calendar id="txtFechaIni"
-							value="#{proyectoBean.proyecto.fechaInicio}" required="true"
-							requiredMessage="Debe indicar una fecha de inicio "
-							rendered="#{proyectoBean.proyecto.idProyecto == 0}"
-							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999" />
-						<p:outputLabel value="#{proyectoBean.proyecto.fechaInicio}"
-							rendered="#{proyectoBean.proyecto.idProyecto != 0}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
+							value="#{proyectoBean.proyecto.fechaInicio}" 
+							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999"  >
+							
+							</p:calendar>
+						
+							
+						
 						
 
 

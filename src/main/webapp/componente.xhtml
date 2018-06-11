@@ -10,21 +10,23 @@
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
 			<h:form id="frm">
+			<p:commandButton value="Nuevo" oncomplete="PF('wdlgComponente').show();" />
 				<p:dataTable id="dtComponente" widgetVar="formatosTable" value="#{componenteBean.lstComponente}" var="co">
 					<p:column headerText="id" >
 						<p:outputLabel value="#{co.idComponente }"/>
 					</p:column>
-					<p:column headerText="id" >
-						<p:outputLabel value="#{co.idComponente }"/>
+					<p:column headerText="descripcion" >
+						<p:outputLabel value="#{co.nombre }"/>
 					</p:column>
-					<p:column headerText="id" >
-						<p:outputLabel value="#{co.idComponente }"/>
+					<p:column headerText="objetivo" >
+						<p:outputLabel value="#{co.objetivo.descripcion }"/>
 					</p:column>
 				</p:dataTable>
 				
-				<p:dialog>
+				<p:dialog id="dlgComponente" widgetVar="wdlgComponente">
 
 				</p:dialog>
+				
 			</h:form>
 		</ui:define>
 
