@@ -1,12 +1,90 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+		
 
-</body> 
+
+		<h:form id="frm">
+			<p:commandButton value="Nuevo"
+				oncomplete="PF('wdlgActividad').show();" />
+			<p:dataTable id="dtActividad" widgetVar=""
+				value="#{actividadBean.lstActividad}" var="ac">
+				<p:column headerText="id">
+					<p:outputLabel value="#{ac.idActividad}" />
+				</p:column>
+				<p:column headerText="nombre">
+					<p:outputLabel value="#{ac.nombre}" />
+				</p:column>
+				<p:column headerText="componente">
+					<p:outputLabel value="#{ac.componente.nombre}" />
+				</p:column>
+				<p:column headerText="estado" style="width:120px">
+					<p:outputLabel value="#{ac.estado}">
+						<f:converter converterId="estadoConverter2" />
+						<p:graphicImage library="images" name="check.jpg"
+							rendered="#{ac.estado eq 'in'}" />
+						<p:graphicImage library="images" name="close.png"
+							rendered="#{ac.estado eq 'co'}" />
+					</p:outputLabel>
+
+				</p:column>
+				<p:column style="width:30px">
+					<p:commandLink actionListener="#{actividadBean.selecionar(ac)}"
+						oncomplete="PF('wdlgActividad').show();" update="frm:dlgActividad">
+						<p:graphicImage library="images" name="edit.jpg" />
+
+					</p:commandLink>
+
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog id="dlgActividad" widgetVar="wdlgActividad" modal="true">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Descripcion" />
+					<p:inputText value="#{actividadBean.actividad.nombre}" />
+
+					<p:outputLabel value="Componente" />
+					<p:selectOneMenu id="cboComponente"
+						value="#{actividadBean.componente}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{actividadBean.lstComponente}" var="co"
+							itemLabel="#{co.nombre}" itemValue="#{co}" />
+
+					</p:selectOneMenu>
+
+					<p:outputLabel value="estado" style="font-weight:bold;" />
+					<p:selectOneMenu id="estado"
+						value="#{actividadBean.actividad.estado}">
+						<f:selectItem itemLabel="--seleccione " itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="iniciado" itemValue="in" />
+						<f:selectItem itemLabel="completado" itemValue="co" />
+
+					</p:selectOneMenu>
+				</p:panelGrid>
+				<h:panelGroup layout="block" style="float:right">
+					<p:commandButton value="Aceptar"
+						actionListener="#{actividadBean.operar()}" ajax="false"
+						action="actividad?faces-redirect=true" />
+					<p:commandButton value="Cancelar" immediate="true"
+						onclick="PF('wdlgActividad').hide();" />
+				</h:panelGroup>
+
+			</p:dialog>
+		</h:form>
+</ui:define>
+	</ui:composition>
+
+
+</body>
 </html>

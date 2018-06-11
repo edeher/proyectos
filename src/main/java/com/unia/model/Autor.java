@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="autores")
+@Table(name="autor")
 public class Autor implements Serializable{
 	
 	@Id
@@ -45,7 +45,7 @@ public class Autor implements Serializable{
 	private String escuela;
 	
 	@Column(name="estado", columnDefinition="char(1)", nullable=false)
-	private String estado;
+	private String estado="1";
 
 	
 	

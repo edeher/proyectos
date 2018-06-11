@@ -95,6 +95,12 @@ public class ActividadBean implements Serializable{
 	public void setLstActividad(List<Actividad> lstActividad) {
 		this.lstActividad = lstActividad;
 	}
+	public List<Componente> getLstComponente() {
+		return lstComponente;
+	}
+	public void setLstComponente(List<Componente> lstComponente) {
+		this.lstComponente = lstComponente;
+	}
 	
 
 }

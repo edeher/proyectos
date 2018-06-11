@@ -24,8 +24,8 @@
 					<p:column headerText="estado" style="width:120px">
 						<p:outputLabel value="#{co.estado}" >
 							<f:converter converterId="estadoConverter2" /> 
-							<p:graphicImage library="images" name="check.jpg" rendered="#{co.estado eq in}"/>
-							<p:graphicImage library="images" name="close.png" rendered="#{co.estado eq co}"/>
+							<p:graphicImage library="images" name="check.jpg" rendered="#{co.estado eq 'in'}"/>
+							<p:graphicImage library="images" name="close.png" rendered="#{co.estado eq 'co'}"/>
 						</p:outputLabel>
 						
 					</p:column>
@@ -39,7 +39,7 @@
 					</p:column>
 				</p:dataTable>
 				
-				<p:dialog id="dlgComponente" widgetVar="wdlgComponente">
+				<p:dialog id="dlgComponente" widgetVar="wdlgComponente" modal="true">
 					<p:panelGrid columns="2">
 					<p:outputLabel value="descripcion" />
 					<p:inputText value="#{componenteBean.componente.nombre}" />

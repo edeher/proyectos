@@ -1,12 +1,119 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
 
-</body> 
+			<h:form id="frm">
+			
+				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();" />
+				<p:dataTable id="dtAutor" value="#{autorBean.lstAutor}" var="au">
+					<p:column headerText="id">
+						<p:outputLabel value="#{au.idAutor}" />
+					</p:column>
+					<p:column headerText="nombres">
+						<p:outputLabel value="#{au.nombres}" />
+					</p:column>
+					<p:column headerText="Facultad" style="width:120px">
+						<p:outputLabel value="#{au.facultad}">
+							<f:converter converterId="facultadescuela" />
+
+						</p:outputLabel>
+
+					</p:column>
+					<p:column headerText="Escuela" style="width:120px">
+						<p:outputLabel value="#{au.escuela}">
+							<f:converter converterId="facultadescuela" />
+
+						</p:outputLabel>
+
+					</p:column>
+					<p:column headerText="email">
+						<p:outputLabel value="#{au.email}" />
+					</p:column>
+					<p:column headerText="telefono">
+						<p:outputLabel value="#{au.telefono}" />
+					</p:column>
+
+
+					<p:column headerText="estado" style="width:120px">
+						<p:outputLabel value="#{au.estado}">
+							<f:converter converterId="estadoConverter" />
+							<p:graphicImage library="images" name="check.jpg"
+								rendered="#{au.estado eq 1}" />
+							<p:graphicImage library="images" name="close.png"
+								rendered="#{au.estado eq 0}" />
+						</p:outputLabel>
+
+					</p:column>
+
+				</p:dataTable>
+
+
+				<p:dialog id="dlgAutor" widgetVar="wdlgAutor" modal="true" >
+					<p:panelGrid columns="2">
+
+						<p:outputLabel value="Nombres"/>
+						<p:inputText value="#{autorBean.autor.nombres}"/>
+						
+						<p:outputLabel value="Apellidos"/>
+						<p:inputText value="#{autorBean.autor.apellidos}"/>
+						
+						<p:outputLabel value="Categoria"/>
+						<p:inputText value="#{autorBean.autor.categoria}"/>
+						
+						<p:outputLabel value="Direccion"/>
+						<p:inputText value="#{autorBean.autor.direccion}"/>
+						
+						<p:outputLabel value="Email"/>
+						<p:inputText value="#{autorBean.autor.email}"/>
+						
+						<p:outputLabel value="Telefono" />
+						<p:inputText value="#{autorBean.autor.telefono}"/>
+						
+						<p:outputLabel value="sexo" />
+						<p:selectOneRadio
+							value="#{autorBean.autor.sexo}">
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Femenino" itemValue="F" />
+						
+						</p:selectOneRadio>
+						
+						<p:outputLabel value="Facultad"/>
+						<p:inputText value="#{autorBean.autor.facultad}"/>
+						
+						<p:outputLabel value="Escuela" />
+						<p:inputText value="#{autorBean.autor.escuela}"/>
+						
+						<p:outputLabel value="estado" style="font-weight:bold;" />
+						<p:selectOneMenu id="Jefe" value="#{autorBean.autor.estado}">
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
+							<f:selectItem itemLabel="ACTIVO" itemValue="1"/>
+							<f:selectItem itemLabel="INACTIVO" itemValue="0"/>
+							
+						</p:selectOneMenu>
+
+
+					</p:panelGrid>
+
+
+
+				</p:dialog>
+
+
+
+			</h:form>
+
+		</ui:define>
+
+
+	</ui:composition>
+
+</body>
 </html>

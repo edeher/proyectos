@@ -27,8 +27,8 @@
 					<p:column headerText="estado" style="width:120px">
 						<p:outputLabel value="#{ob.estado}" >
 							<f:converter converterId="estadoConverter2" /> 
-							<p:graphicImage library="images" name="check.jpg" rendered="#{ob.estado eq in}"/>
-							<p:graphicImage library="images" name="close.png" rendered="#{ob.estado eq co}"/>
+							<p:graphicImage library="images" name="check.jpg" rendered="#{ob.estado eq 'in'}"/>
+							<p:graphicImage library="images" name="close.png" rendered="#{ob.estado eq 'co'}"/>
 						</p:outputLabel>
 						
 					</p:column>

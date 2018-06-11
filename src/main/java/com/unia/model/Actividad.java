@@ -26,8 +26,8 @@ public class Actividad implements Serializable{
 	@Column(name="nombre",length=150, nullable=false)
 	private String nombre;
 	
-	@Column(name="estado", columnDefinition="char(1)", nullable=false)
-	private String estado;
+	@Column(name="estado", columnDefinition="char(2)", nullable=false)
+	private String estado="in";
 
 	public int getIdActividad() {
 		return idActividad;
