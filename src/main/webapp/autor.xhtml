@@ -52,6 +52,14 @@
 						</p:outputLabel>
 
 					</p:column>
+					<p:column style="width:30px">
+						<p:commandLink actionListener="#{autorBean.selecionar(au)}"
+							oncomplete="PF('wdlgAutor').show();" update="frm:dlgAutor">
+							<p:graphicImage library="images" name="edit.jpg" />
+
+						</p:commandLink>
+
+					</p:column>
 
 				</p:dataTable>
 
@@ -85,11 +93,20 @@
 						
 						</p:selectOneRadio>
 						
-						<p:outputLabel value="Facultad"/>
-						<p:inputText value="#{autorBean.autor.facultad}"/>
-						
+						<p:outputLabel value="Facultad" />
+						<p:selectOneMenu id="facu" value="#{autorBean.autor.facultad}">
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
+							<f:selectItem itemLabel="Facultad 1" itemValue="f1"/>
+							<f:selectItem itemLabel="Facultad 2" itemValue="f2"/>
+							
+						</p:selectOneMenu>
 						<p:outputLabel value="Escuela" />
-						<p:inputText value="#{autorBean.autor.escuela}"/>
+						<p:selectOneMenu id="escu" value="#{autorBean.autor.escuela}">
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
+							<f:selectItem itemLabel="Escuela 1" itemValue="e1"/>
+							<f:selectItem itemLabel="Escuela 2" itemValue="e2"/>
+							
+						</p:selectOneMenu>
 						
 						<p:outputLabel value="estado" style="font-weight:bold;" />
 						<p:selectOneMenu id="Jefe" value="#{autorBean.autor.estado}">
@@ -101,7 +118,13 @@
 
 
 					</p:panelGrid>
-
+<h:panelGroup layout="block" style="float:right">
+						<p:commandButton value="Aceptar"
+							actionListener="#{autorBean.operar()}" ajax="false"
+							action="autor?faces-redirect=true" />
+						<p:commandButton value="Cancelar" immediate="true"
+							onclick="PF('wdlgAutor').hide();" />
+					</h:panelGroup>
 
 
 				</p:dialog>

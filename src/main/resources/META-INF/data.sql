@@ -9,4 +9,7 @@ insert into componente (estado,nombre,idObjetivo) values('in','componente 1',1)
 insert into actividad (estado,nombre,idComponente) values('in','acctividad 1',1)
 
 
-insert into autor(apellidos,categoria,direccion,email, escuela,estado,facultad,nombres,sexo,telefono) values ('apellido 1','categoria 1','direcion 1','email 1','e1','1','f1','nombres 1','m','telefono 1')
+insert into autor(apellidos,categoria,direccion,email, escuela,estado,facultad,nombres,sexo,telefono) values ('apellido 1','categoria 1','direcion 1','email 1','e1','1','f1','nombres 1','M','telefono 1')
+
+
+insert into fuente(descripcion) values ('fuente 1')

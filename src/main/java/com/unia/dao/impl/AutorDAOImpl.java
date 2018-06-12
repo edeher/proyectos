@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.unia.dao.IAutorDAO;
-import com.unia.model.Actividad;
+
 import com.unia.model.Autor;
 
 @Stateless
