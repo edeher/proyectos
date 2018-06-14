@@ -13,6 +13,7 @@ import com.unia.model.Objetivo;
 import com.unia.model.Proyecto;
 import com.unia.service.IObjetivoService;
 import com.unia.service.IProyectoService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -45,7 +46,7 @@ public class ObjetivoBean implements Serializable{
 			lstObjetivo=serviceobjetivo.listar();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	
@@ -55,7 +56,7 @@ public class ObjetivoBean implements Serializable{
 			
 			lstProyecto=serviceproyecto.listar();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void seleccionar(Objetivo t) {
@@ -64,7 +65,7 @@ public class ObjetivoBean implements Serializable{
 			this.proyecto=objetivo.getProyecto();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	
@@ -73,13 +74,15 @@ public class ObjetivoBean implements Serializable{
 			if(objetivo.getIdObjetivo()>0) {
 				objetivo.setProyecto(proyecto);
 				serviceobjetivo.modificar(objetivo);
+				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
 			}else {
 				objetivo.setProyecto(proyecto);
 				serviceobjetivo.registrar(objetivo);
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 		
 	}

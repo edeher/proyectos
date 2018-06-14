@@ -14,6 +14,7 @@ import javax.inject.Named;
 
 import com.unia.model.Proyecto;
 import com.unia.service.IProyectoService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -36,8 +37,7 @@ public class ProyectoBean implements Serializable {
 		try {
 			lstProyecto=serviceProyecto.listar();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void operar() {
@@ -56,15 +56,16 @@ public class ProyectoBean implements Serializable {
 			
 			if(proyecto.getIdProyecto()>0) {
 				serviceProyecto.modificar(proyecto);
+				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
 			}else {
 				serviceProyecto.registrar(proyecto);
-				
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 			
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void selecionar(Proyecto t) {
@@ -79,7 +80,7 @@ public class ProyectoBean implements Serializable {
 //			this.fechaSelecionada2=cal2.getTime();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 

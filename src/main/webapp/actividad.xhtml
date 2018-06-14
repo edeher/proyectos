@@ -10,7 +10,9 @@
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
 		
-
+	<p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
+	
+	
 
 		<h:form id="frm">
 			<p:commandButton value="Nuevo"
@@ -74,8 +76,8 @@
 				</p:panelGrid>
 				<h:panelGroup layout="block" style="float:right">
 					<p:commandButton value="Aceptar"
-						actionListener="#{actividadBean.operar()}" ajax="false"
-						action="actividad?faces-redirect=true" />
+						actionListener="#{actividadBean.operar()}"  ajax="false"
+						action="actividad?faces-redirect=true"  />
 					<p:commandButton value="Cancelar" immediate="true"
 						onclick="PF('wdlgActividad').hide();" />
 				</h:panelGroup>

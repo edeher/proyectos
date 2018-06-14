@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import com.unia.model.Autor;
 import com.unia.service.IAutorService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -33,14 +34,14 @@ public class AutorBean implements Serializable{
 		try {
 			lstAutor= serviceautor.listar();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void selecionar(Autor t) {
 		try {
 			this.autor=serviceautor.listarPorId(t);
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void operar() {
@@ -48,12 +49,14 @@ public class AutorBean implements Serializable{
 			
 			if(autor.getIdAutor()>0){
 				serviceautor.modificar(autor);
+				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
 			}else {
 				serviceautor.registrar(autor);
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	

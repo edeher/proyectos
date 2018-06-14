@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:mp="http://primefaces.org/ui/cruze"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
@@ -10,6 +11,7 @@
 
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
+		<p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 			<h:form id="frm" enctype="multipart/form-data">
 				<p:commandButton value="Nuevo"
 					oncomplete="PF('wdlgProyecto').show();" />

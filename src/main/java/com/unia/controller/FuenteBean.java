@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import com.unia.model.Fuente;
 import com.unia.service.IFuenteService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -33,7 +34,7 @@ public class FuenteBean implements Serializable{
 		try {
 			lstFuente= servicefuente.listar();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 		
 	}
@@ -41,7 +42,7 @@ public class FuenteBean implements Serializable{
 		try {
 			this.fuente=servicefuente.listarPorId(t);
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 		
 	}
@@ -49,11 +50,13 @@ public class FuenteBean implements Serializable{
 		try {
 			if(fuente.getIdFuente()>0) {
 				servicefuente.modificar(fuente);
+				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
 			}else {
 				servicefuente.registrar(fuente);
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 

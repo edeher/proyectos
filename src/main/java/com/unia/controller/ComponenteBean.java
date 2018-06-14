@@ -13,6 +13,7 @@ import com.unia.model.Componente;
 import com.unia.model.Objetivo;
 import com.unia.service.IComponenteService;
 import com.unia.service.IObjetivoService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -43,14 +44,14 @@ public class ComponenteBean implements Serializable{
 		try {
 			lstComponente=servicecomponente.listar();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void listarobjetivo() {
 		try {
 			lstObjetivo=serviceobjetivo.listar();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void seleccionar(Componente t) {
@@ -58,7 +59,7 @@ public class ComponenteBean implements Serializable{
 			this.componente=servicecomponente.listarPorId(t);
 			this.objetivo=componente.getObjetivo();
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	public void operar() {
@@ -66,13 +67,14 @@ public class ComponenteBean implements Serializable{
 			if(componente.getIdComponente()>0) {
 				componente.setObjetivo(objetivo);
 				servicecomponente.modificar(componente);
+				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
 			}else {
 				componente.setObjetivo(objetivo);
 				servicecomponente.registrar(componente);
-				
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 	}
 	
