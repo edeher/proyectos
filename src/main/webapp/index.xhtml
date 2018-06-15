@@ -11,14 +11,15 @@
 
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
-		<p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
+			<p:messages id="msj" autoUpdate="true" showDetail="true"
+				globalOnly="true" closable="true" />
 			<h:form id="frm" enctype="multipart/form-data">
 				<p:commandButton value="Nuevo"
 					oncomplete="PF('wdlgProyecto').show();" />
 
 				<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}"
 					var="pro" rows="10">
-					<p:column headerText="id">
+					<p:column headerText="id" style="width:30px">
 						<p:outputLabel value="#{pro.idProyecto}" />
 					</p:column>
 					<p:column headerText="nombre">
@@ -36,6 +37,18 @@
 					</p:column>
 					<p:column headerText="duracion">
 						<p:outputLabel value="#{pro.perfilduracion}" />
+					</p:column>
+					<p:column headerText="Monto Aprobado ">
+						<p:outputLabel value="#{pro.montoAprobado}" >
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+						</p:outputLabel>
+					</p:column>
+					<p:column headerText="Monto Restante ">
+						<p:outputLabel value="#{pro.montoRestante}" >
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true"/>
+						</p:outputLabel>
 					</p:column>
 					<p:column style="width:30px">
 						<p:commandLink actionListener="#{proyectoBean.selecionar(pro)}"
@@ -55,25 +68,29 @@
 						<p:inputText value="#{proyectoBean.proyecto.nombre}" />
 
 
-						<p:outputLabel value="Fecha Presentacion" style="font-weight: bold;" />
+						<p:outputLabel value="Fecha Presentacion"
+							style="font-weight: bold;" />
 						<p:calendar id="txtFechaPresen"
-							value="#{proyectoBean.proyecto.fechaPresentacion}" 
-							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999" >
-						
-							</p:calendar>
-					
+							value="#{proyectoBean.proyecto.fechaPresentacion}" locale="es"
+							pattern="dd/MM/yyyy" mask="99/99/9999">
+
+						</p:calendar>
+
 
 						<p:outputLabel value="Fecha Inicio" style="font-weight: bold;" />
 						<p:calendar id="txtFechaIni"
-							value="#{proyectoBean.proyecto.fechaInicio}" 
-							locale="es" pattern="dd/MM/yyyy" mask="99/99/9999"  >
-							
-							</p:calendar>
-						
-							
-						
-						
+							value="#{proyectoBean.proyecto.fechaInicio}" locale="es"
+							pattern="dd/MM/yyyy" mask="99/99/9999">
 
+						</p:calendar>
+
+						<p:outputLabel value="Monto Aprobado  s/." style="font-weight:bold;" />
+						<p:inputNumber value="#{proyectoBean.proyecto.montoAprobado}" decimalSeparator="." thousandSeparator=","/>
+						
+						<p:outputLabel value="Monto Restante  s/." style="font-weight:bold;" />
+						
+						<p:inputNumber value="#{proyectoBean.proyecto.montoRestante}" decimalSeparator="." thousandSeparator=","/>
+						
 
 						<p:outputLabel value="tipo de financiamiento" />
 						<p:selectOneRadio
@@ -82,9 +99,13 @@
 							<f:selectItem itemLabel="externo" itemValue="ex" />
 							<f:selectItem itemLabel="mixto" itemValue="mi" />
 						</p:selectOneRadio>
-						<p:outputLabel value="perfil de duracion" />
-						<p:inputText value="#{proyectoBean.proyecto.perfilduracion}" />
-						<p:outputLabel value="tiempo de vigencia" />
+						
+						
+						<p:outputLabel value="perfil de duracion en años" />
+						<p:inputText value="#{proyectoBean.proyecto.perfilduracion}"  />
+						
+						
+						<p:outputLabel value="tiempo de vigencia en años" />
 						<p:inputText value="#{proyectoBean.proyecto.tiempovigencia}" />
 
 

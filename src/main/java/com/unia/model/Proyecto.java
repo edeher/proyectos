@@ -32,6 +32,13 @@ public class Proyecto implements Serializable{
 	@Column(name="fechaInicio", nullable=false)
 	private Date fechaInicio;
 	
+	
+	@Column(name="montoAprobado", columnDefinition="Decimal(10,2)", nullable=false)
+	private double montoAprobado;
+	
+	@Column(name="montoRestante", columnDefinition="Decimal(10,2)", nullable=false)
+	private double montoRestante;
+	
 	@Column(name="tipofinanciamiento", length=2, nullable=false)
 	private String tipofinanciamiento;
 	
@@ -108,6 +115,24 @@ public class Proyecto implements Serializable{
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	
+
+	public double getMontoAprobado() {
+		return montoAprobado;
+	}
+
+	public void setMontoAprobado(double montoAprobado) {
+		this.montoAprobado = montoAprobado;
+	}
+
+	public double getMontoRestante() {
+		return montoRestante;
+	}
+
+	public void setMontoRestante(double montoRestante) {
+		this.montoRestante = montoRestante;
 	}
 
 	@Override
