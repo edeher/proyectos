@@ -13,15 +13,25 @@
 			<h:form id="frm">
 				<p:commandButton value="nuevo"
 					oncomplete="PF('wdlgObjetivo').show();" />
-				<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}"
+				<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}" widgetVar="formatosTable"
 					var="ob">
-					<p:column headerText="id">
+					
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar:" />
+							<p:inputText id="globalFilter"
+								onkeyup="buscarFiltros('formatosTable', this);"
+								style="width:150px" placeholder="Ingrese una palabra" />
+						</p:outputPanel>
+					</f:facet>
+					
+					<p:column headerText="id" style="width:30px" filterBy="#{ob.idObjetivo}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{ob.idObjetivo }" />
 					</p:column>
-					<p:column headerText="Descripcion">
+					<p:column headerText="Descripcion" filterBy="#{ob.descripcion}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{ob.descripcion }" />
 					</p:column>
-					<p:column headerText="Proyecto">
+					<p:column headerText="Proyecto" filterBy="#{ob.proyecto.nombre}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{ob.proyecto.nombre }" />
 					</p:column>
 					<p:column headerText="estado" style="width:120px">

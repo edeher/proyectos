@@ -17,34 +17,51 @@
 				<p:commandButton value="Nuevo"
 					oncomplete="PF('wdlgProyecto').show();" />
 
-				<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}"
+				<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}" widgetVar="formatosTable" 
 					var="pro" rows="10">
-					<p:column headerText="id" style="width:30px">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar:" />
+							<p:inputText id="globalFilter"
+								onkeyup="buscarFiltros('formatosTable', this);"
+								style="width:150px" placeholder="Ingrese una palabra" />
+						</p:outputPanel>
+					</f:facet>
+					
+					
+					<p:column headerText="id" style="width:30px" filterBy="#{pro.idProyecto}"
+						filterMatchMode="contains" filterStyle="display:none" >
 						<p:outputLabel value="#{pro.idProyecto}" />
 					</p:column>
-					<p:column headerText="nombre">
+					<p:column headerText="nombre"   filterBy="#{pro.nombre}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.nombre}" />
 					</p:column>
-					<p:column headerText="Fecha presentacion">
+					<p:column headerText="Fecha presentacion"   filterBy="#{pro.fechaPresentacion}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.fechaPresentacion}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</p:outputLabel>
 					</p:column>
-					<p:column headerText="Fecha inicio">
+					<p:column headerText="Fecha inicio"   filterBy="#{pro.fechaInicio}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.fechaInicio}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</p:outputLabel>
 					</p:column>
-					<p:column headerText="duracion">
+					<p:column headerText="duracion"   filterBy="#{pro.perfilduracion}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.perfilduracion}" />
 					</p:column>
-					<p:column headerText="Monto Aprobado ">
+					<p:column headerText="Monto Aprobado "   filterBy="#{pro.montoAprobado}"
+						filterMatchMode="contains" filterStyle="display:none" >
 						<p:outputLabel value="#{pro.montoAprobado}" >
 						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
-							maxIntegerDigits="10" type="currency" locale="true" />
+							maxIntegerDigits="10" type="currency" locale="true"/>
 						</p:outputLabel>
 					</p:column>
-					<p:column headerText="Monto Restante ">
+					<p:column headerText="Monto Restante "   filterBy="#{pro.montoRestante}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.montoRestante}" >
 						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
 							maxIntegerDigits="10" type="currency" locale="true"/>

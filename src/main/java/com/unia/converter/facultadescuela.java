@@ -23,16 +23,16 @@ public class facultadescuela implements Converter {
 			
 			switch(tipo) {
 			case "f1":
-				tipo="facultad 1";
+				tipo="1facultad 1";
 				break;
 			case "f2":
-				tipo="facultad 2";
+				tipo="2facultad 2";
 				break;
 			case "e1":
-				tipo="escuela 1";
+				tipo="1escuela 1";
 				break;
 			case "e2":
-				tipo="escuela 2";
+				tipo="2escuela 2";
 				break;	
 			default :
 				tipo="NO VALIDO";

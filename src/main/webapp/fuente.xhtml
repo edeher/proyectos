@@ -12,11 +12,22 @@
 <p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 			<h:form id="frm">
 				<p:commandButton value="Nuevo" oncomplete="PF('wdlgFuente').show();" />
-				<p:dataTable id="dtFuente" value="#{fuenteBean.lstFuente}" var="fu">
-					<p:column headerText="id">
+				<p:dataTable id="dtFuente" widgetVar="formatosTable" value="#{fuenteBean.lstFuente}" var="fu">
+				
+							
+				<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar:" />
+							<p:inputText id="globalFilter"
+								onkeyup="buscarFiltros('formatosTable', this);"
+								style="width:150px" placeholder="Ingrese una palabra" />
+						</p:outputPanel>
+					</f:facet>
+				
+					<p:column headerText="id" style="width:30px" filterBy="#{fu.idFuente}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{fu.idFuente}" />
 					</p:column>
-					<p:column headerText="Descripcion">
+					<p:column headerText="Descripcion" filterBy="#{fu.descripcion}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{fu.descripcion}" />
 					</p:column>
 

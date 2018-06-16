@@ -13,31 +13,42 @@
 			<h:form id="frm">
 			
 				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();" />
-				<p:dataTable id="dtAutor" value="#{autorBean.lstAutor}" var="au">
-					<p:column headerText="id">
+				<p:dataTable id="dtAutor" widgetVar="formatosTable" value="#{autorBean.lstAutor}" var="au">
+				
+				<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar:" />
+							<p:inputText id="globalFilter"
+								onkeyup="buscarFiltros('formatosTable', this);"
+								style="width:150px" placeholder="Ingrese una palabra" />
+						</p:outputPanel>
+					</f:facet>
+				
+				
+					<p:column headerText="id" style="width:30px" filterBy="#{au.idAutor}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.idAutor}" />
 					</p:column>
-					<p:column headerText="nombres">
+					<p:column headerText="nombres" filterBy="#{au.nombres}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.nombres}" />
 					</p:column>
-					<p:column headerText="Facultad" style="width:120px">
+					<p:column headerText="Facultad" style="width:120px" filterBy="#{au.facultad}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.facultad}">
 							<f:converter converterId="facultadescuela" />
 
 						</p:outputLabel>
 
 					</p:column>
-					<p:column headerText="Escuela" style="width:120px">
+					<p:column headerText="Escuela" style="width:120px" filterBy="#{au.escuela}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.escuela}">
-							<f:converter converterId="facultadescuela" />
+							<f:converter converterId="facultadescuela"/>
 
 						</p:outputLabel>
 
 					</p:column>
-					<p:column headerText="email">
+					<p:column headerText="email" filterBy="#{au.email}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.email}" />
 					</p:column>
-					<p:column headerText="telefono">
+					<p:column headerText="telefono" filterBy="#{au.telefono}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.telefono}" />
 					</p:column>
 

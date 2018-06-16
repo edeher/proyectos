@@ -13,13 +13,23 @@
 			<h:form id="frm">
 			<p:commandButton value="Nuevo" oncomplete="PF('wdlgComponente').show();" />
 				<p:dataTable id="dtComponente" widgetVar="formatosTable" value="#{componenteBean.lstComponente}" var="co">
-					<p:column headerText="id" >
+				
+				<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar:" />
+							<p:inputText id="globalFilter"
+								onkeyup="buscarFiltros('formatosTable', this);"
+								style="width:150px" placeholder="Ingrese una palabra" />
+						</p:outputPanel>
+					</f:facet>
+				
+					<p:column headerText="id" style="width:30px" filterBy="#{co.idComponente}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{co.idComponente }"/>
 					</p:column>
-					<p:column headerText="descripcion" >
+					<p:column headerText="descripcion" filterBy="#{co.nombre}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{co.nombre }"/>
 					</p:column>
-					<p:column headerText="objetivo" >
+					<p:column headerText="objetivo" filterBy="#{co.objetivo.descripcion}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{co.objetivo.descripcion }"/>
 					</p:column>
 					<p:column headerText="estado" style="width:120px">
