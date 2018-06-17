@@ -31,6 +31,7 @@ public class ComponenteBean implements Serializable{
 	
 	private List<Componente> lstComponente;
 	private List<Objetivo> lstObjetivo;
+	private String titulo;
 	
 	@PostConstruct
 	public void init() {
@@ -39,6 +40,15 @@ public class ComponenteBean implements Serializable{
 		this.listarcomponente();
 		this.listarobjetivo();
 		
+	}
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.lstObjetivo.clear();
+		this.lstObjetivo=new ArrayList<>();
+		this.listarobjetivo();
+		this.componente.setIdComponente((short)0);
+		this.componente.setNombre(null);
+		this.componente.setEstado("in");
 	}
 	public void listarcomponente() {
 		try {
@@ -60,6 +70,8 @@ public class ComponenteBean implements Serializable{
 			this.objetivo=componente.getObjetivo();
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 	}
 	public void operar() {
@@ -67,7 +79,7 @@ public class ComponenteBean implements Serializable{
 			if(componente.getIdComponente()>0) {
 				componente.setObjetivo(objetivo);
 				servicecomponente.modificar(componente);
-				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "MOdificaciï¿½n Exitosa", "INFO");
 			}else {
 				componente.setObjetivo(objetivo);
 				servicecomponente.registrar(componente);
@@ -105,6 +117,12 @@ public class ComponenteBean implements Serializable{
 	}
 	public void setLstObjetivo(List<Objetivo> lstObjetivo) {
 		this.lstObjetivo = lstObjetivo;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	

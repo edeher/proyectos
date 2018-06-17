@@ -13,9 +13,13 @@
 		<ui:define name="content">
 			<p:messages id="msj" autoUpdate="true" showDetail="true"
 				globalOnly="true" closable="true" />
+				
+				
 			<h:form id="frm" enctype="multipart/form-data">
+			
+			
 				<p:commandButton value="Nuevo"
-					oncomplete="PF('wdlgProyecto').show();" />
+					oncomplete="PF('wdlgProyecto').show();" actionListener="#{proyectoBean.limpiarControles()}" update="frm:dlgProyecto" />
 
 				<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}" widgetVar="formatosTable" 
 					var="pro" rows="10">
@@ -78,7 +82,7 @@
 
 				</p:dataTable>
 
-				<p:dialog header="proyecto" id="dlgProyecto"
+				<p:dialog header="#{proyectoBean.titulo}" id="dlgProyecto"
 					widgetVar="wdlgProyecto" modal="true">
 					<h:panelGrid columns="2">
 						<p:outputLabel value="nombre" />

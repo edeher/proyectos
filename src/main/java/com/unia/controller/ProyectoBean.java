@@ -26,10 +26,29 @@ public class ProyectoBean implements Serializable {
 	private List<Proyecto> lstProyecto;
 	private Date fechaSelecionada1;
 	private Date fechaSelecionada2;
+	private String titulo;
+	
+	
+	
 	@PostConstruct
 	public void init() {
+		
 		lstProyecto=new ArrayList<>();
 		this.listar();
+		
+	}
+	
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.proyecto.setIdProyecto((short)0);
+		this.proyecto.setNombre(null);
+		this.proyecto.setFechaPresentacion(null);
+		this.proyecto.setFechaInicio(null);
+		this.proyecto.setPerfilduracion(null);
+		this.proyecto.setTipofinanciamiento(null);
+		this.proyecto.setMontoAprobado((short)0);
+		this.proyecto.setMontoRestante((short)0);
+		this.proyecto.setTiempovigencia(null);
 		
 	}
 	
@@ -56,7 +75,7 @@ public class ProyectoBean implements Serializable {
 			
 			if(proyecto.getIdProyecto()>0) {
 				serviceProyecto.modificar(proyecto);
-				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "MOdificaciï¿½n Exitosa", "INFO");
 			}else {
 				serviceProyecto.registrar(proyecto);
 				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
@@ -81,6 +100,8 @@ public class ProyectoBean implements Serializable {
 			
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 	}
 
@@ -114,6 +135,14 @@ public class ProyectoBean implements Serializable {
 
 	public void setFechaSelecionada2(Date fechaSelecionada2) {
 		this.fechaSelecionada2 = fechaSelecionada2;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	

@@ -12,7 +12,7 @@
 <p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 			<h:form id="frm">
 				<p:commandButton value="nuevo"
-					oncomplete="PF('wdlgObjetivo').show();" />
+					oncomplete="PF('wdlgObjetivo').show();" actionListener="#{objetivoBean.limpiarControles()}" update="frm:dlgObjetivo" />
 				<p:dataTable id="dtObjetivo" value="#{objetivoBean.lstObjetivo}" widgetVar="formatosTable"
 					var="ob">
 					
@@ -54,7 +54,7 @@
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog header="Objetivo" id="dlgObjetivo" widgetVar="wdlgObjetivo" modal="true">
+				<p:dialog header="#{objetivoBean.titulo}" id="dlgObjetivo" widgetVar="wdlgObjetivo" modal="true">
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Proyecto" />
 						<p:selectOneMenu id="cboProyecto" value="#{objetivoBean.proyecto}"

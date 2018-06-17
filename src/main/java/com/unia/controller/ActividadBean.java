@@ -30,6 +30,10 @@ public class ActividadBean implements Serializable{
 	
 	private List<Componente> lstComponente;
 	private List<Actividad> lstActividad;
+	private String titulo;
+	
+	
+	
 	
 	@PostConstruct
 	public void init() {
@@ -37,6 +41,16 @@ public class ActividadBean implements Serializable{
 		lstComponente=new ArrayList<>();
 		this.listaractividad();
 		this.listarcomponente();
+	}
+	
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.lstComponente.clear();
+		this.lstComponente= new ArrayList<>();
+		this.listarcomponente();
+		this.actividad.setIdActividad((short)0);
+		this.actividad.setNombre(null);
+		this.actividad.setEstado("in");
 	}
 	public void listaractividad() {
 		try {
@@ -58,6 +72,8 @@ public class ActividadBean implements Serializable{
 			this.componente=actividad.getComponente();
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 	}
 	public void operar () {
@@ -65,7 +81,7 @@ public class ActividadBean implements Serializable{
 			if(actividad.getIdActividad()>0) {
 				actividad.setComponente(componente);
 				serviceactividad.modificar(actividad);
-				MensajeManager.mostrarMensaje("Aviso", "Modificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "Modificaciï¿½n Exitosa", "INFO");
 			}else {
 				actividad.setComponente(componente);
 				serviceactividad.registrar(actividad);
@@ -103,6 +119,12 @@ public class ActividadBean implements Serializable{
 	}
 	public void setLstComponente(List<Componente> lstComponente) {
 		this.lstComponente = lstComponente;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 

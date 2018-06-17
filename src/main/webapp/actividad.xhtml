@@ -16,7 +16,7 @@
 
 		<h:form id="frm">
 			<p:commandButton value="Nuevo"
-				oncomplete="PF('wdlgActividad').show();" />
+				oncomplete="PF('wdlgActividad').show();"  actionListener="#{actividadBean.limpiarControles()}" update="frm:dlgActividad" />
 			<p:dataTable id="dtActividad" widgetVar="formatosTable"
 				value="#{actividadBean.lstActividad}" var="ac">
 				
@@ -59,7 +59,7 @@
 				</p:column>
 			</p:dataTable>
 
-			<p:dialog id="dlgActividad" widgetVar="wdlgActividad" modal="true">
+			<p:dialog header="#{actividadBean.titulo}" id="dlgActividad" widgetVar="wdlgActividad" modal="true">
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Descripcion" />
 					<p:inputText value="#{actividadBean.actividad.nombre}" />

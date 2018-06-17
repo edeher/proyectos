@@ -31,6 +31,8 @@ public class ObjetivoBean implements Serializable{
 	private List<Objetivo> lstObjetivo;
 	private List<Proyecto> lstProyecto;
 	
+	private String titulo;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -40,6 +42,16 @@ public class ObjetivoBean implements Serializable{
 		this.listarproyecto();
 	}
 	
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.lstProyecto.clear();
+		this.lstProyecto=new ArrayList<>();
+		this.listarproyecto();
+		this.objetivo.setIdObjetivo((short)0);
+		this.objetivo.setDescripcion(null);
+		this.objetivo.setEstado("in");
+		
+	}
 	public void listarobjetivo() {
 		try {
 			
@@ -66,6 +78,8 @@ public class ObjetivoBean implements Serializable{
 			
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 	}
 	
@@ -74,7 +88,7 @@ public class ObjetivoBean implements Serializable{
 			if(objetivo.getIdObjetivo()>0) {
 				objetivo.setProyecto(proyecto);
 				serviceobjetivo.modificar(objetivo);
-				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "ModificaciÃ³n Exitosa", "INFO");
 			}else {
 				objetivo.setProyecto(proyecto);
 				serviceobjetivo.registrar(objetivo);
@@ -110,6 +124,14 @@ public class ObjetivoBean implements Serializable{
 	}
 	public void setLstProyecto(List<Proyecto> lstProyecto) {
 		this.lstProyecto = lstProyecto;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	
