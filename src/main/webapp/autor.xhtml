@@ -12,7 +12,7 @@
 <p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 			<h:form id="frm">
 			
-				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();" />
+				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();" actionListener="#{autorBean.limpiarControles()}" update="frm:dlgAutor"/>
 				<p:dataTable id="dtAutor" widgetVar="formatosTable" value="#{autorBean.lstAutor}" var="au">
 				
 				<f:facet name="header">
@@ -75,7 +75,7 @@
 				</p:dataTable>
 
 
-				<p:dialog id="dlgAutor" widgetVar="wdlgAutor" modal="true" >
+				<p:dialog header="#{autorBean.titulo}" id="dlgAutor" widgetVar="wdlgAutor" modal="true" >
 					<p:panelGrid columns="2">
 
 						<p:outputLabel value="Nombres"/>

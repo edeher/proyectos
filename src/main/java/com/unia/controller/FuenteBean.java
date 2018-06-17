@@ -23,12 +23,19 @@ public class FuenteBean implements Serializable{
 	private IFuenteService servicefuente;
 	
 	private List<Fuente> lstFuente;
+	private String titulo;
 	
 	@PostConstruct
 	public void init() {
 		
 		lstFuente= new ArrayList<>();
 		this.listarfuente();
+	}
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.fuente.setIdFuente((short)0);
+		this.fuente.setDescripcion(null);
+		
 	}
 	public void listarfuente() {
 		try {
@@ -43,6 +50,8 @@ public class FuenteBean implements Serializable{
 			this.fuente=servicefuente.listarPorId(t);
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 		
 	}
@@ -50,7 +59,7 @@ public class FuenteBean implements Serializable{
 		try {
 			if(fuente.getIdFuente()>0) {
 				servicefuente.modificar(fuente);
-				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "MOdificaciï¿½n Exitosa", "INFO");
 			}else {
 				servicefuente.registrar(fuente);
 				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
@@ -72,6 +81,12 @@ public class FuenteBean implements Serializable{
 	}
 	public void setLstFuente(List<Fuente> lstFuente) {
 		this.lstFuente = lstFuente;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	

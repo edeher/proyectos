@@ -46,6 +46,7 @@ public class ComponenteBean implements Serializable{
 		this.lstObjetivo.clear();
 		this.lstObjetivo=new ArrayList<>();
 		this.listarobjetivo();
+		this.componente.getObjetivo().setIdObjetivo((short)0);
 		this.componente.setIdComponente((short)0);
 		this.componente.setNombre(null);
 		this.componente.setEstado("in");

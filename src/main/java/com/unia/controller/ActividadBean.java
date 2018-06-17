@@ -48,6 +48,7 @@ public class ActividadBean implements Serializable{
 		this.lstComponente.clear();
 		this.lstComponente= new ArrayList<>();
 		this.listarcomponente();
+		this.actividad.getComponente().setIdComponente((short)0);
 		this.actividad.setIdActividad((short)0);
 		this.actividad.setNombre(null);
 		this.actividad.setEstado("in");

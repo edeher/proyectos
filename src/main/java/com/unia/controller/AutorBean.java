@@ -23,12 +23,27 @@ public class AutorBean implements Serializable{
 	private IAutorService serviceautor;
 	
 	private List<Autor> lstAutor;
+	private String titulo;
 	
 	@PostConstruct
 	public void init() {
 		lstAutor= new ArrayList<>();
 		this.listarautor();
 		
+	}
+	public void limpiarControles() {
+		this.titulo="Nuevo";
+		this.autor.setIdAutor((short)0);
+		this.autor.setNombres(null);
+		this.autor.setApellidos(null);
+		this.autor.setCategoria(null);
+		this.autor.setDireccion(null);
+		this.autor.setEmail(null);
+		this.autor.setTelefono(null);
+		this.autor.setSexo(null);
+		this.autor.setFacultad(null);
+		this.autor.setEscuela(null);
+		this.autor.setEstado("1");
 	}
 	public void listarautor() {
 		try {
@@ -42,6 +57,8 @@ public class AutorBean implements Serializable{
 			this.autor=serviceautor.listarPorId(t);
 		} catch (Exception e) {
 			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
 		}
 	}
 	public void operar() {
@@ -49,7 +66,7 @@ public class AutorBean implements Serializable{
 			
 			if(autor.getIdAutor()>0){
 				serviceautor.modificar(autor);
-				MensajeManager.mostrarMensaje("Aviso", "MOdificación Exitosa", "INFO");
+				MensajeManager.mostrarMensaje("Aviso", "MOdificaciï¿½n Exitosa", "INFO");
 			}else {
 				serviceautor.registrar(autor);
 				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
@@ -74,6 +91,12 @@ public class AutorBean implements Serializable{
 	}
 	public void setLstAutor(List<Autor> lstAutor) {
 		this.lstAutor = lstAutor;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	

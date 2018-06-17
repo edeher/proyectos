@@ -11,7 +11,7 @@
 		<ui:define name="content">
 <p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
 			<h:form id="frm">
-				<p:commandButton value="Nuevo" oncomplete="PF('wdlgFuente').show();" />
+				<p:commandButton value="Nuevo" oncomplete="PF('wdlgFuente').show();" actionListener="#{fuenteBean.limpiarControles()}" update="frm:dlgFuente" />
 				<p:dataTable id="dtFuente" widgetVar="formatosTable" value="#{fuenteBean.lstFuente}" var="fu">
 				
 							
@@ -40,7 +40,7 @@
 
 					</p:column>
 				</p:dataTable>
-				<p:dialog header="Fuente" id="dlgFuente" widgetVar="wdlgFuente"
+				<p:dialog header="#{fuenteBean.titulo}" id="dlgFuente" widgetVar="wdlgFuente"
 					modal="true">
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Descripcion" />

@@ -47,6 +47,7 @@ public class ObjetivoBean implements Serializable{
 		this.lstProyecto.clear();
 		this.lstProyecto=new ArrayList<>();
 		this.listarproyecto();
+		this.objetivo.getProyecto().setIdProyecto((short)0);
 		this.objetivo.setIdObjetivo((short)0);
 		this.objetivo.setDescripcion(null);
 		this.objetivo.setEstado("in");
