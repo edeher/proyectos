@@ -25,3 +25,16 @@ insert into autor(apellidos,categoria,direccion,email, escuela,estado,facultad,n
 insert into fuente(descripcion) values ('1fuente 1')
 insert into fuente(descripcion) values ('2fuente 2')
 insert into fuente(descripcion) values ('3fuente 3')
+
+insert into facultad(nombre) values ("facultad de ingenieria")
+insert into facultad(nombre) values ("facultad de Educacion")
+
+insert into escuela(idFacultad,nombre) values(1," agroindustrial")
+insert into escuela(idFacultad,nombre) values(1,"agroforestal acuicola")
+
+insert into escuela(idFacultad,nombre) values(2," inicial bilingue")
+insert into escuela(idFacultad,nombre) values(2,"primaria bilingue")
+
+
+
+
