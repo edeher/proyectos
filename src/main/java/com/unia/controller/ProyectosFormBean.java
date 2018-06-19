@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,33 +42,43 @@ public class ProyectosFormBean implements Serializable{
 	@Inject
 	private IActividadService serviceactividades;
 	
-	private List<Proyecto > lstProyectos;;
+	
 	private List<Objetivo> lstObjetivos;
 	private List<Componente> lstComponentes;
 	private List<Actividad> lstActividades;
 	
-	
+	@PostConstruct
 	public void init() {
-		lstProyectos= new ArrayList<>();
-		lstObjetivos= new ArrayList<>();
+		
+		
 		lstComponentes= new ArrayList<>();
 		lstActividades= new ArrayList<>();
-		this.listarproyectos();
-		this.listarobjetivos();
+		
+		
 		this.listarcomponentes();
 		this.listaractividades();
 		
 		Proyecto pro=Faces.getFlashAttribute("proyectos");
 		
 		if(pro!=null) {
+			lstObjetivos= new ArrayList<>();
 			this.leer(pro);
+			
 		}
 	}
-	
+	public void operar () {
+		
+	}
 	public void leer(Proyecto p) {
 		
 		try {
-			proyectos=serviceproyectos.listarPorId(p);
+			
+			this.proyectos=serviceproyectos.listarPorId(p);
+			this.lstObjetivos=this.proyectos.getObjetivos();
+			
+			
+			
+			
 		
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -75,21 +86,7 @@ public class ProyectosFormBean implements Serializable{
 	}
 	
 	
-	public void listarproyectos() {
-		try {
-			lstProyectos=serviceproyectos.listar();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
 	
-	public void listarobjetivos() {
-		try {
-			lstObjetivos=serviceobjetivos.listar();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
 	public void listarcomponentes() {
 		try {
 			lstComponentes=servicecomponentes.listar();
@@ -131,12 +128,7 @@ public class ProyectosFormBean implements Serializable{
 	public void setActividads(Actividad actividads) {
 		this.actividads = actividads;
 	}
-	public List<Proyecto> getLstProyectos() {
-		return lstProyectos;
-	}
-	public void setLstProyectos(List<Proyecto> lstProyectos) {
-		this.lstProyectos = lstProyectos;
-	}
+	
 	public List<Objetivo> getLstObjetivos() {
 		return lstObjetivos;
 	}

@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import com.unia.dao.IActividadDAO;
 import com.unia.model.Actividad;
+import com.unia.model.Componente;
 import com.unia.service.IActividadService;
 
 @Named
@@ -38,6 +39,12 @@ public class ActividadServiceImpl implements IActividadService,Serializable{
 	public Actividad listarPorId(Actividad t) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listarPorId(t);
+	}
+
+	@Override
+	public List<Actividad> listarPorFacultad(Componente c) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listarPorComponente(c);
 	}
 
 }

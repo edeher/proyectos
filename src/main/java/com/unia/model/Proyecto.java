@@ -52,8 +52,8 @@ public class Proyecto implements Serializable{
 	@Column(name="tiempovigencia", length=8, nullable=false)
 	private String tiempovigencia;
 	
-	@Column(name="estado", columnDefinition="char(1)", nullable=false)
-	private String estado="1";
+	@Column(name="estado", columnDefinition="char(2)", nullable=false)
+	private String estado="in";
 	
 	@OneToMany(mappedBy = "proyecto", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.EAGER, orphanRemoval = true)

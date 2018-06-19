@@ -1,11 +1,194 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 
-</body> 
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nombre de Proyecto"
+						style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.nombre}" />
+
+
+					<p:outputLabel value="Fecha de Presentacion"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.fechaPresentacion}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Fecha de Inicio" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.fechaInicio}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Duracion" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.perfilduracion}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Vigencia" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tiempovigencia}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Aprobado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoAprobado}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Restante" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoRestante}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Tipo de Financiamiento"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tipofinanciamiento}">
+						<f:converter converterId="tipoFinanciamiento" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Estado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.estado}">
+						<f:converter converterId="estadoProyecto" />
+					</p:outputLabel>
+				<p:column style="width:30px">
+						<p:commandLink 
+							>
+							<p:graphicImage library="images" name="edit.jpg" />
+
+						</p:commandLink>
+
+					</p:column>
+
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" border="2" cellpadding="20"
+					cellspacing="10">
+					<h:panelGroup>
+						<p:dataTable id="dtOjetivos"
+							value="#{proyectosFormBean.lstObjetivos}" var="ob">
+							<p:column headerText="id" style="width:30px"
+								filterBy="#{ob.idObjetivo}" filterMatchMode="contains"
+								filterStyle="display:none">
+								<p:outputLabel value="#{ob.idObjetivo }" />
+							</p:column>
+							<p:column headerText="Descripcion" filterBy="#{ob.descripcion}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.descripcion }" />
+							</p:column>
+							<p:column headerText="Proyecto" filterBy="#{ob.proyecto.nombre}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.proyecto.nombre }" />
+							</p:column>
+							<p:column headerText="estado" style="width:120px">
+								<p:outputLabel value="#{ob.estado}">
+									<f:converter converterId="estadoConverter2" />
+									<p:graphicImage library="images" name="check.jpg"
+										rendered="#{ob.estado eq 'in'}" />
+									<p:graphicImage library="images" name="close.png"
+										rendered="#{ob.estado eq 'co'}" />
+								</p:outputLabel>
+
+							</p:column>
+
+
+
+						</p:dataTable>
+
+
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:dataTable id="dtOjetivoss"
+							value="#{proyectosFormBean.lstObjetivos}" var="ob">
+							<p:column headerText="id" style="width:30px"
+								filterBy="#{ob.idObjetivo}" filterMatchMode="contains"
+								filterStyle="display:none">
+								<p:outputLabel value="#{ob.idObjetivo }" />
+							</p:column>
+							<p:column headerText="Descripcion" filterBy="#{ob.descripcion}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.descripcion }" />
+							</p:column>
+							<p:column headerText="Proyecto" filterBy="#{ob.proyecto.nombre}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.proyecto.nombre }" />
+							</p:column>
+							<p:column headerText="estado" style="width:120px">
+								<p:outputLabel value="#{ob.estado}">
+									<f:converter converterId="estadoConverter2" />
+									<p:graphicImage library="images" name="check.jpg"
+										rendered="#{ob.estado eq 'in'}" />
+									<p:graphicImage library="images" name="close.png"
+										rendered="#{ob.estado eq 'co'}" />
+								</p:outputLabel>
+
+							</p:column>
+
+
+
+						</p:dataTable>
+
+
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:dataTable id="dtOjetivosss"
+							value="#{proyectosFormBean.lstObjetivos}" var="ob">
+							<p:column headerText="id" style="width:30px"
+								filterBy="#{ob.idObjetivo}" filterMatchMode="contains"
+								filterStyle="display:none">
+								<p:outputLabel value="#{ob.idObjetivo }" />
+							</p:column>
+							<p:column headerText="Descripcion" filterBy="#{ob.descripcion}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.descripcion }" />
+							</p:column>
+							<p:column headerText="Proyecto" filterBy="#{ob.proyecto.nombre}"
+								filterMatchMode="contains" filterStyle="display:none">
+								<p:outputLabel value="#{ob.proyecto.nombre }" />
+							</p:column>
+							<p:column headerText="estado" style="width:120px">
+								<p:outputLabel value="#{ob.estado}">
+									<f:converter converterId="estadoConverter2" />
+									<p:graphicImage library="images" name="check.jpg"
+										rendered="#{ob.estado eq 'in'}" />
+									<p:graphicImage library="images" name="close.png"
+										rendered="#{ob.estado eq 'co'}" />
+								</p:outputLabel>
+
+							</p:column>
+
+
+
+						</p:dataTable>
+
+
+					</h:panelGroup>
+				</h:panelGrid>
+				
+				
+				
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
 </html>

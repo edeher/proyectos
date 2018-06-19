@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import com.unia.dao.IComponenteDAO;
 import com.unia.model.Componente;
+import com.unia.model.Objetivo;
 import com.unia.service.IComponenteService;
 
 @Named
@@ -38,6 +39,12 @@ public class ComponenteServiceImpl implements IComponenteService, Serializable{
 	public Componente listarPorId(Componente t) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listarPorId(t);
+	}
+
+	@Override
+	public List<Componente> listarPorFacultad(Objetivo o) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listarPorObjetivo(o);
 	}
 
 }
