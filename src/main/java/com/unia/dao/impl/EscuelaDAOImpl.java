@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import com.unia.dao.IEscuelaDAO;
 import com.unia.model.Escuela;
+import com.unia.model.Facultad;
 
 @Stateless
 public class EscuelaDAOImpl implements IEscuelaDAO, Serializable{
@@ -51,6 +52,19 @@ public class EscuelaDAOImpl implements IEscuelaDAO, Serializable{
 		Escuela escuela=lista!=null&&!lista.isEmpty() ? lista.get(0):new Escuela();
 		
 		return escuela;
+	}
+
+	@Override
+	public List<Escuela> listarPorFacultad(Facultad f) throws Exception {
+			List<Escuela> lista=null;
+		
+		Query q= em.createQuery("FROM Escuela e where e.facultad.idFacultad=?1");
+		q.setParameter(1, f.getIdFacultad());
+		
+		lista=(List<Escuela>)q.getResultList();
+		
+				
+		return lista;
 	}
 
 }

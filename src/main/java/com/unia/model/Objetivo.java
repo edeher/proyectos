@@ -1,14 +1,18 @@
 package com.unia.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,10 @@ public class Objetivo implements Serializable{
 	@Column(name="estado", columnDefinition="char(2)", nullable=false)
 	private String estado="in";
 	
+	@OneToMany(mappedBy = "objetivo", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Componente> componentes;
+	
 
 	public int getIdObjetivo() {
 		return idObjetivo;
@@ -46,13 +54,7 @@ public class Objetivo implements Serializable{
 		this.proyecto = proyecto;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idObjetivo;
-		return result;
-	}
+	
 
 	
 	public String getDescripcion() {
@@ -70,6 +72,24 @@ public class Objetivo implements Serializable{
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	
+	
+	public List<Componente> getComponentes() {
+		return componentes;
+	}
+
+	public void setComponentes(List<Componente> componentes) {
+		this.componentes = componentes;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idObjetivo;
+		return result;
 	}
 
 	@Override

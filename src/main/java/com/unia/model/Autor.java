@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,11 +40,10 @@ public class Autor implements Serializable{
 	@Column(name="categoria", length=50, nullable=false)
 	private String categoria;
 	
-	@Column(name="facultad",length=2,nullable=false)
-	private String facultad;
 	
-	@Column(name="escuela", length=2,nullable=false)
-	private String escuela;
+	@ManyToOne
+	@JoinColumn(name="idEscuela", nullable=false)
+	private Escuela escuela;
 	
 	@Column(name="estado", columnDefinition="char(1)", nullable=false)
 	private String estado="1";
@@ -113,19 +114,13 @@ public class Autor implements Serializable{
 		this.categoria = categoria;
 	}
 
-	public String getFacultad() {
-		return facultad;
-	}
+	
 
-	public void setFacultad(String facultad) {
-		this.facultad = facultad;
-	}
-
-	public String getEscuela() {
+	public Escuela getEscuela() {
 		return escuela;
 	}
 
-	public void setEscuela(String escuela) {
+	public void setEscuela(Escuela escuela) {
 		this.escuela = escuela;
 	}
 

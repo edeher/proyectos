@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import com.unia.dao.IEscuelaDAO;
 import com.unia.model.Escuela;
+import com.unia.model.Facultad;
 import com.unia.service.IEscuelaService;
 
 @Named
@@ -38,6 +39,12 @@ public class EscuelaServiceImpl implements IEscuelaService, Serializable {
 	public Escuela listarPorId(Escuela t) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listarPorId(t);
+	}
+
+	@Override
+	public List<Escuela> listarPorFacultad(Facultad f) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listarPorFacultad(f);
 	}
 
 }

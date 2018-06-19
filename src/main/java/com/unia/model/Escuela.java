@@ -1,5 +1,7 @@
 package com.unia.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="escuela")
-public class Escuela {
+public class Escuela implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

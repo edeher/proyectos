@@ -3,19 +3,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
 <h:head></h:head>
 <body>
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
-<p:messages id="msj" autoUpdate="true" showDetail="true" globalOnly="true" closable="true"/>
+			<p:messages id="msj" autoUpdate="true" showDetail="true"
+				globalOnly="true" closable="true" />
 			<h:form id="frm">
-			
-				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();" actionListener="#{autorBean.limpiarControles()}" update="frm:dlgAutor"/>
-				<p:dataTable id="dtAutor" widgetVar="formatosTable" value="#{autorBean.lstAutor}" var="au">
-				
-				<f:facet name="header">
+
+				<p:commandButton value="Nuevo" oncomplete="PF('wdlgAutor').show();"
+					actionListener="#{autorBean.limpiarControles()}"
+					update="frm:dlgAutor" />
+				<p:dataTable id="dtAutor" widgetVar="formatosTable"
+					value="#{autorBean.lstAutor}" var="au">
+
+					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Buscar:" />
 							<p:inputText id="globalFilter"
@@ -23,32 +28,41 @@
 								style="width:150px" placeholder="Ingrese una palabra" />
 						</p:outputPanel>
 					</f:facet>
-				
-				
-					<p:column headerText="id" style="width:30px" filterBy="#{au.idAutor}" filterMatchMode="contains" filterStyle="display:none">
+
+
+					<p:column headerText="id" style="width:30px"
+						filterBy="#{au.idAutor}" filterMatchMode="contains"
+						filterStyle="display:none">
 						<p:outputLabel value="#{au.idAutor}" />
 					</p:column>
-					<p:column headerText="nombres" filterBy="#{au.nombres}" filterMatchMode="contains" filterStyle="display:none">
+					<p:column headerText="nombres" filterBy="#{au.nombres}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.nombres}" />
 					</p:column>
-					<p:column headerText="Facultad" style="width:120px" filterBy="#{au.facultad}" filterMatchMode="contains" filterStyle="display:none">
-						<p:outputLabel value="#{au.facultad}">
-							<f:converter converterId="facultadescuela" />
+					<p:column headerText="Facultad" style="width:120px"
+						filterBy="#{au.escuela.facultad.nombre}" filterMatchMode="contains"
+						filterStyle="display:none">
+						<p:outputLabel value="#{au.escuela.facultad.nombre}">
+							
 
 						</p:outputLabel>
 
 					</p:column>
-					<p:column headerText="Escuela" style="width:120px" filterBy="#{au.escuela}" filterMatchMode="contains" filterStyle="display:none">
-						<p:outputLabel value="#{au.escuela}">
-							<f:converter converterId="facultadescuela"/>
+					<p:column headerText="Escuela" style="width:120px"
+						filterBy="#{au.escuela.nombre}" filterMatchMode="contains"
+						filterStyle="display:none">
+						<p:outputLabel value="#{au.escuela.nombre}">
+							
 
 						</p:outputLabel>
 
 					</p:column>
-					<p:column headerText="email" filterBy="#{au.email}" filterMatchMode="contains" filterStyle="display:none">
+					<p:column headerText="email" filterBy="#{au.email}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.email}" />
 					</p:column>
-					<p:column headerText="telefono" filterBy="#{au.telefono}" filterMatchMode="contains" filterStyle="display:none">
+					<p:column headerText="telefono" filterBy="#{au.telefono}"
+						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{au.telefono}" />
 					</p:column>
 
@@ -75,61 +89,68 @@
 				</p:dataTable>
 
 
-				<p:dialog header="#{autorBean.titulo}" id="dlgAutor" widgetVar="wdlgAutor" modal="true" >
+				<p:dialog header="#{autorBean.titulo}" id="dlgAutor"
+					widgetVar="wdlgAutor" modal="true">
 					<p:panelGrid columns="2">
 
-						<p:outputLabel value="Nombres"/>
-						<p:inputText value="#{autorBean.autor.nombres}"/>
-						
-						<p:outputLabel value="Apellidos"/>
-						<p:inputText value="#{autorBean.autor.apellidos}"/>
-						
-						<p:outputLabel value="Categoria"/>
-						<p:inputText value="#{autorBean.autor.categoria}"/>
-						
-						<p:outputLabel value="Direccion"/>
-						<p:inputText value="#{autorBean.autor.direccion}"/>
-						
-						<p:outputLabel value="Email"/>
-						<p:inputText value="#{autorBean.autor.email}"/>
-						
+						<p:outputLabel value="Nombres" />
+						<p:inputText value="#{autorBean.autor.nombres}" />
+
+						<p:outputLabel value="Apellidos" />
+						<p:inputText value="#{autorBean.autor.apellidos}" />
+
+						<p:outputLabel value="Categoria" />
+						<p:inputText value="#{autorBean.autor.categoria}" />
+
+						<p:outputLabel value="Direccion" />
+						<p:inputText value="#{autorBean.autor.direccion}" />
+
+						<p:outputLabel value="Email" />
+						<p:inputText value="#{autorBean.autor.email}" />
+
 						<p:outputLabel value="Telefono" />
-						<p:inputText value="#{autorBean.autor.telefono}"/>
-						
+						<p:inputText value="#{autorBean.autor.telefono}" />
+
 						<p:outputLabel value="sexo" />
-						<p:selectOneRadio
-							value="#{autorBean.autor.sexo}">
+						<p:selectOneRadio value="#{autorBean.autor.sexo}">
 							<f:selectItem itemLabel="Masculino" itemValue="M" />
 							<f:selectItem itemLabel="Femenino" itemValue="F" />
-						
+
 						</p:selectOneRadio>
-						
+
 						<p:outputLabel value="Facultad" />
-						<p:selectOneMenu id="facu" value="#{autorBean.autor.facultad}">
-							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
-							<f:selectItem itemLabel="Facultad 1" itemValue="f1"/>
-							<f:selectItem itemLabel="Facultad 2" itemValue="f2"/>
+						<p:selectOneMenu id="cboFacultad" value="#{autorBean.facultad}"
+							converter="omnifaces.SelectItemsConverter">
+							<p:ajax listener="#{autorBean.listarescuela()}" update="cboEscuela"/>
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{autorBean.lstFacultad}" var="fa"
+								itemLabel="#{fa.nombre}" itemValue="#{fa}" />
 							
 						</p:selectOneMenu>
 						<p:outputLabel value="Escuela" />
-						<p:selectOneMenu id="escu" value="#{autorBean.autor.escuela}">
-							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
-							<f:selectItem itemLabel="Escuela 1" itemValue="e1"/>
-							<f:selectItem itemLabel="Escuela 2" itemValue="e2"/>
-							
+						<p:selectOneMenu id="cboEscuela"
+							value="#{autorBean.escuela}" converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{autorBean.lstEscuela}" var="es"
+								itemLabel="#{es.nombre}" itemValue="#{es}" />
+
+
 						</p:selectOneMenu>
-						
+
 						<p:outputLabel value="estado" style="font-weight:bold;" />
 						<p:selectOneMenu id="Jefe" value="#{autorBean.autor.estado}">
-							<f:selectItem itemLabel="--seleccione " itemValue="#{null}" noSelectionOption="true"/>
-							<f:selectItem itemLabel="ACTIVO" itemValue="1"/>
-							<f:selectItem itemLabel="INACTIVO" itemValue="0"/>
-							
+							<f:selectItem itemLabel="--seleccione " itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItem itemLabel="ACTIVO" itemValue="1" />
+							<f:selectItem itemLabel="INACTIVO" itemValue="0" />
+
 						</p:selectOneMenu>
 
 
 					</p:panelGrid>
-<h:panelGroup layout="block" style="float:right">
+					<h:panelGroup layout="block" style="float:right">
 						<p:commandButton value="Aceptar"
 							actionListener="#{autorBean.operar()}" ajax="false"
 							action="autor?faces-redirect=true" />

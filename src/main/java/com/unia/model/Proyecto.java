@@ -3,12 +3,16 @@ package com.unia.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,6 +54,11 @@ public class Proyecto implements Serializable{
 	
 	@Column(name="estado", columnDefinition="char(1)", nullable=false)
 	private String estado="1";
+	
+	@OneToMany(mappedBy = "proyecto", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.EAGER, orphanRemoval = true)
+	private List<Objetivo> objetivos;
+	
 
 	public int getIdProyecto() {
 		return idProyecto;
@@ -133,6 +142,14 @@ public class Proyecto implements Serializable{
 
 	public void setMontoRestante(double montoRestante) {
 		this.montoRestante = montoRestante;
+	}
+
+	public List<Objetivo> getObjetivos() {
+		return objetivos;
+	}
+
+	public void setObjetivos(List<Objetivo> objetivos) {
+		this.objetivos = objetivos;
 	}
 
 	@Override

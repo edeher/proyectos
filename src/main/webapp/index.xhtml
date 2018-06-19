@@ -3,26 +3,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:mp="http://primefaces.org/ui/cruze"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 <body>
-
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
-			<p:messages id="msj" autoUpdate="true" showDetail="true"
-				globalOnly="true" closable="true" />
-				
-				
-			<h:form id="frm" enctype="multipart/form-data">
-			
-			
-				<p:commandButton value="Nuevo"
-					oncomplete="PF('wdlgProyecto').show();" actionListener="#{proyectoBean.limpiarControles()}" update="frm:dlgProyecto" />
+			<h:form>
 
-				<p:dataTable id="dtProyectos" value="#{proyectoBean.lstProyecto}" widgetVar="formatosTable" 
-					var="pro" rows="10">
+				<p:dataTable id="dtProyectos" widgetVar="formatosTable"
+					value="#{proyectosBean.lstProyectos}" var="pro">
 					<f:facet name="header">
 						<p:outputPanel>
 							<h:outputText value="Buscar:" />
@@ -31,119 +21,49 @@
 								style="width:150px" placeholder="Ingrese una palabra" />
 						</p:outputPanel>
 					</f:facet>
-					
-					
-					<p:column headerText="id" style="width:30px" filterBy="#{pro.idProyecto}"
-						filterMatchMode="contains" filterStyle="display:none" >
+					<p:column headerText="id" style="width:30px"
+						filterBy="#{pro.idProyecto}" filterMatchMode="contains"
+						filterStyle="display:none">
 						<p:outputLabel value="#{pro.idProyecto}" />
 					</p:column>
-					<p:column headerText="nombre"   filterBy="#{pro.nombre}"
+					<p:column headerText="Nombre" filterBy="#{pro.nombre}"
 						filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{pro.nombre}" />
 					</p:column>
-					<p:column headerText="Fecha presentacion"   filterBy="#{pro.fechaPresentacion}"
-						filterMatchMode="contains" filterStyle="display:none">
+					<p:column headerText="fecha de Presentacion"
+						filterBy="#{pro.fechaPresentacion}" filterMatchMode="contains"
+						filterStyle="display:none">
 						<p:outputLabel value="#{pro.fechaPresentacion}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</p:outputLabel>
 					</p:column>
-					<p:column headerText="Fecha inicio"   filterBy="#{pro.fechaInicio}"
-						filterMatchMode="contains" filterStyle="display:none">
-						<p:outputLabel value="#{pro.fechaInicio}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
+					<p:column headerText="monto aprobado"
+						filterBy="#{pro.montoAprobado}" filterMatchMode="contains"
+						filterStyle="display:none">
+						<p:outputLabel value="#{pro.montoAprobado}">
+							<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+								maxIntegerDigits="10" type="currency" locale="true" />
 						</p:outputLabel>
 					</p:column>
-					<p:column headerText="duracion"   filterBy="#{pro.perfilduracion}"
-						filterMatchMode="contains" filterStyle="display:none">
+					<p:column headerText="perfil de duracion"
+						filterBy="#{pro.perfilduracion}" filterMatchMode="contains"
+						filterStyle="display:none">
 						<p:outputLabel value="#{pro.perfilduracion}" />
 					</p:column>
-					<p:column headerText="Monto Aprobado "   filterBy="#{pro.montoAprobado}"
-						filterMatchMode="contains" filterStyle="display:none" >
-						<p:outputLabel value="#{pro.montoAprobado}" >
-						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
-							maxIntegerDigits="10" type="currency" locale="true"/>
-						</p:outputLabel>
-					</p:column>
-					<p:column headerText="Monto Restante "   filterBy="#{pro.montoRestante}"
-						filterMatchMode="contains" filterStyle="display:none">
-						<p:outputLabel value="#{pro.montoRestante}" >
-						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
-							maxIntegerDigits="10" type="currency" locale="true"/>
-						</p:outputLabel>
-					</p:column>
 					<p:column style="width:30px">
-						<p:commandLink actionListener="#{proyectoBean.selecionar(pro)}"
-							oncomplete="PF('wdlgProyecto').show();" update="frm:dlgProyecto">
-							<p:graphicImage library="images" name="edit.jpg" />
-
+						<p:commandLink actionListener="#{proyectosBean.seleccionar(pro)}"
+							action="itemform">
+							<p:graphicImage library="images" name="lupa.png" />
 						</p:commandLink>
-
 					</p:column>
-
 				</p:dataTable>
 
-				<p:dialog header="#{proyectoBean.titulo}" id="dlgProyecto"
-					widgetVar="wdlgProyecto" modal="true">
-					<h:panelGrid columns="2">
-						<p:outputLabel value="nombre" />
-						<p:inputText value="#{proyectoBean.proyecto.nombre}" />
-
-
-						<p:outputLabel value="Fecha Presentacion"
-							style="font-weight: bold;" />
-						<p:calendar id="txtFechaPresen"
-							value="#{proyectoBean.proyecto.fechaPresentacion}" locale="es"
-							pattern="dd/MM/yyyy" mask="99/99/9999">
-
-						</p:calendar>
-
-
-						<p:outputLabel value="Fecha Inicio" style="font-weight: bold;" />
-						<p:calendar id="txtFechaIni"
-							value="#{proyectoBean.proyecto.fechaInicio}" locale="es"
-							pattern="dd/MM/yyyy" mask="99/99/9999">
-
-						</p:calendar>
-
-						<p:outputLabel value="Monto Aprobado  s/." style="font-weight:bold;" />
-						<p:inputNumber value="#{proyectoBean.proyecto.montoAprobado}" decimalSeparator="." thousandSeparator=","/>
-						
-						<p:outputLabel value="Monto Restante  s/." style="font-weight:bold;" />
-						
-						<p:inputNumber value="#{proyectoBean.proyecto.montoRestante}" decimalSeparator="." thousandSeparator=","/>
-						
-
-						<p:outputLabel value="tipo de financiamiento" />
-						<p:selectOneRadio
-							value="#{proyectoBean.proyecto.tipofinanciamiento}">
-							<f:selectItem itemLabel="unia" itemValue="un" />
-							<f:selectItem itemLabel="externo" itemValue="ex" />
-							<f:selectItem itemLabel="mixto" itemValue="mi" />
-						</p:selectOneRadio>
-						
-						
-						<p:outputLabel value="perfil de duracion en años" />
-						<p:inputText value="#{proyectoBean.proyecto.perfilduracion}"  />
-						
-						
-						<p:outputLabel value="tiempo de vigencia en años" />
-						<p:inputText value="#{proyectoBean.proyecto.tiempovigencia}" />
-
-
-					</h:panelGrid>
-					<h:panelGroup layout="block" style="float:right">
-						<p:commandButton value="Aceptar"
-							actionListener="#{proyectoBean.operar()}" ajax="false"
-							action="index?faces-redirect=true" />
-						<p:commandButton value="Cancelar" immediate="true"
-							onclick="PF('wdlgProyecto').hide();" />
-					</h:panelGroup>
-
-				</p:dialog>
-
-
 			</h:form>
+
+
 		</ui:define>
+
 	</ui:composition>
+
 </body>
 </html>

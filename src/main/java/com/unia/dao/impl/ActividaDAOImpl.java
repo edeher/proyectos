@@ -11,6 +11,8 @@ import javax.persistence.Query;
 
 import com.unia.dao.IActividadDAO;
 import com.unia.model.Actividad;
+import com.unia.model.Componente;
+import com.unia.model.Escuela;
 
 @Stateless
 public class ActividaDAOImpl implements IActividadDAO, Serializable{
@@ -51,5 +53,18 @@ public class ActividaDAOImpl implements IActividadDAO, Serializable{
 			Actividad actividad=lista!=null&&!lista.isEmpty() ? lista.get(0):new Actividad();
 			
 			return actividad;
+		}
+
+		@Override
+		public List<Actividad> listarPorComponente(Componente c) throws Exception {
+			List<Actividad> lista=null;
+			
+			Query q= em.createQuery("FROM Actividad a where a.componente.idComponente=?1");
+			q.setParameter(1, c.getIdComponente());
+			
+			lista=(List<Actividad>)q.getResultList();
+			
+					
+			return lista;
 		}
 }

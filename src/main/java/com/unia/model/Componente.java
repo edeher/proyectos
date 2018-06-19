@@ -1,14 +1,18 @@
 package com.unia.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +32,11 @@ public class Componente implements Serializable{
 	
 	@Column(name="estado", columnDefinition="char(2)", nullable=false)
 	private String estado="in";
+	
+	
+	@OneToMany(mappedBy = "componente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Actividad> Actividades;
 
 	public int getIdComponente() {
 		return idComponente;
@@ -59,6 +68,15 @@ public class Componente implements Serializable{
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+
+	public List<Actividad> getActividades() {
+		return Actividades;
+	}
+
+	public void setActividades(List<Actividad> actividades) {
+		Actividades = actividades;
 	}
 
 	@Override
