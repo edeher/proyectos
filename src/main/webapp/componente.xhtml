@@ -26,8 +26,8 @@
 					<p:column headerText="id" style="width:30px" filterBy="#{co.idComponente}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{co.idComponente }"/>
 					</p:column>
-					<p:column headerText="descripcion" filterBy="#{co.nombre}" filterMatchMode="contains" filterStyle="display:none">
-						<p:outputLabel value="#{co.nombre }"/>
+					<p:column headerText="descripcion" filterBy="#{co.descripcion}" filterMatchMode="contains" filterStyle="display:none">
+						<p:outputLabel value="#{co.descripcion}"/>
 					</p:column>
 					<p:column headerText="objetivo" filterBy="#{co.objetivo.descripcion}" filterMatchMode="contains" filterStyle="display:none">
 						<p:outputLabel value="#{co.objetivo.descripcion }"/>
@@ -53,7 +53,7 @@
 				<p:dialog header="#{componenteBean.titulo}" id="dlgComponente" widgetVar="wdlgComponente" modal="true">
 					<p:panelGrid columns="2">
 					<p:outputLabel value="descripcion" />
-					<p:inputText value="#{componenteBean.componente.nombre}" />
+					<p:inputText value="#{componenteBean.componente.descripcion}" />
 					<p:outputLabel value="Objetivo" />
 						<p:selectOneMenu id="cboObjetivo" value="#{componenteBean.objetivo}"
 							converter="omnifaces.SelectItemsConverter">

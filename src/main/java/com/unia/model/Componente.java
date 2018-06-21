@@ -27,12 +27,14 @@ public class Componente implements Serializable{
 	@JoinColumn(name="idObjetivo", nullable=false)
 	private Objetivo objetivo;
 	
-	@Column(name="nombre", length=100, nullable=false)
-	private String nombre;
+	@Column(name="descripcion", length=100, nullable=false)
+	private String descripcion;
 	
 	@Column(name="estado", columnDefinition="char(2)", nullable=false)
 	private String estado="in";
 	
+	@Column(name="tipo", columnDefinition="char(2)", nullable=false)
+	private String tipo="co";
 	
 	@OneToMany(mappedBy = "componente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -54,12 +56,14 @@ public class Componente implements Serializable{
 		this.objetivo = objetivo;
 	}
 
-	public String getNombre() {
-		return nombre;
+	
+
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getEstado() {
@@ -77,6 +81,15 @@ public class Componente implements Serializable{
 
 	public void setActividades(List<Actividad> actividades) {
 		Actividades = actividades;
+	}
+
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

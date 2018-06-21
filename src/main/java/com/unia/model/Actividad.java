@@ -23,12 +23,15 @@ public class Actividad implements Serializable{
 	@JoinColumn(name="idComponente", nullable=false)
 	private Componente componente;
 	
-	@Column(name="nombre",length=150, nullable=false)
-	private String nombre;
+	@Column(name="descripcion",length=150, nullable=false)
+	private String descripcion;
 	
 	@Column(name="estado", columnDefinition="char(2)", nullable=false)
 	private String estado="in";
 
+	@Column(name="tipo", columnDefinition="char(2)", nullable=false)
+	private String tipo="ac";
+	
 	public int getIdActividad() {
 		return idActividad;
 	}
@@ -45,12 +48,14 @@ public class Actividad implements Serializable{
 		this.componente = componente;
 	}
 
-	public String getNombre() {
-		return nombre;
+	
+
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getEstado() {
@@ -59,6 +64,16 @@ public class Actividad implements Serializable{
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

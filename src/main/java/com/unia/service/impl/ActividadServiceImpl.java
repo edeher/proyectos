@@ -42,7 +42,7 @@ public class ActividadServiceImpl implements IActividadService,Serializable{
 	}
 
 	@Override
-	public List<Actividad> listarPorFacultad(Componente c) throws Exception {
+	public List<Actividad> listarPorComponente(Componente c) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listarPorComponente(c);
 	}

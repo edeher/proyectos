@@ -33,6 +33,9 @@ public class Objetivo implements Serializable{
 	@Column(name="estado", columnDefinition="char(2)", nullable=false)
 	private String estado="in";
 	
+	@Column(name="tipo", columnDefinition="char(2)", nullable=false)
+	private String tipo="ob";
+	
 	@OneToMany(mappedBy = "objetivo", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Componente> componentes;
@@ -82,6 +85,16 @@ public class Objetivo implements Serializable{
 
 	public void setComponentes(List<Componente> componentes) {
 		this.componentes = componentes;
+	}
+	
+	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

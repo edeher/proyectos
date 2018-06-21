@@ -6,5 +6,5 @@ import com.unia.model.Componente;
 import com.unia.model.Objetivo;
 
 public interface IComponenteService extends IService<Componente> {
-	List<Componente> listarPorFacultad(Objetivo o)throws Exception;
+	List<Componente> listarPorObjetivo(Objetivo o)throws Exception;
 }

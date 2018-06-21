@@ -33,11 +33,11 @@
 				<p:column headerText="id" style="width:30px" filterBy="#{ac.idActividad}" filterMatchMode="contains" filterStyle="display:none">
 					<p:outputLabel value="#{ac.idActividad}"  />
 				</p:column>
-				<p:column headerText="nombre" filterBy="#{ac.nombre}" filterMatchMode="contains" filterStyle="display:none">
-					<p:outputLabel value="#{ac.nombre}" />
+				<p:column headerText="nombre" filterBy="#{ac.descripcion}" filterMatchMode="contains" filterStyle="display:none">
+					<p:outputLabel value="#{ac.descripcion}" />
 				</p:column>
-				<p:column headerText="componente" filterBy="#{ac.componente.nombre}" filterMatchMode="contains" filterStyle="display:none">
-					<p:outputLabel value="#{ac.componente.nombre}" />
+				<p:column headerText="componente" filterBy="#{ac.componente.descripcion}" filterMatchMode="contains" filterStyle="display:none">
+					<p:outputLabel value="#{ac.componente.descripcion}" />
 				</p:column>
 				<p:column headerText="estado" style="width:120px">
 					<p:outputLabel value="#{ac.estado}">
@@ -62,7 +62,7 @@
 			<p:dialog header="#{actividadBean.titulo}" id="dlgActividad" widgetVar="wdlgActividad" modal="true">
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Descripcion" />
-					<p:inputText value="#{actividadBean.actividad.nombre}" />
+					<p:inputText value="#{actividadBean.actividad.descripcion}" />
 
 					<p:outputLabel value="Componente" />
 					<p:selectOneMenu id="cboComponente"
@@ -71,7 +71,7 @@
 						<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
 							noSelectionOption="true" />
 						<f:selectItems value="#{actividadBean.lstComponente}" var="co"
-							itemLabel="#{co.nombre}" itemValue="#{co}" />
+							itemLabel="#{co.descripcion}" itemValue="#{co}" />
 
 					</p:selectOneMenu>
 

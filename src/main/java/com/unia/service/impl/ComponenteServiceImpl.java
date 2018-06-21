@@ -42,7 +42,7 @@ public class ComponenteServiceImpl implements IComponenteService, Serializable{
 	}
 
 	@Override
-	public List<Componente> listarPorFacultad(Objetivo o) throws Exception {
+	public List<Componente> listarPorObjetivo(Objetivo o) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listarPorObjetivo(o);
 	}

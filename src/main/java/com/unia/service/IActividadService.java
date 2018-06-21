@@ -6,5 +6,5 @@ import com.unia.model.Actividad;
 import com.unia.model.Componente;
 
 public interface IActividadService extends IService<Actividad>{
-	List<Actividad> listarPorFacultad(Componente c)throws Exception;
+	List<Actividad> listarPorComponente(Componente c)throws Exception;
 }

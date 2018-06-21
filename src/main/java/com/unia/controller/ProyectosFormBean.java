@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 import com.unia.model.Actividad;
 import com.unia.model.Componente;
@@ -42,7 +44,7 @@ public class ProyectosFormBean implements Serializable{
 	@Inject
 	private IActividadService serviceactividades;
 	
-	
+	private TreeNode raiz;
 	private List<Objetivo> lstObjetivos;
 	private List<Componente> lstComponentes;
 	private List<Actividad> lstActividades;
@@ -73,12 +75,33 @@ public class ProyectosFormBean implements Serializable{
 		
 		try {
 			
-			this.proyectos=serviceproyectos.listarPorId(p);
-			this.lstObjetivos=this.proyectos.getObjetivos();
-			
-			
-			
-			
+			this.proyectos = serviceproyectos.listarPorId(p);
+			this.lstObjetivos = this.proyectos.getObjetivos();
+			List<Objetivo> objetivosRaizes = this.lstObjetivos;
+
+			this.raiz = new DefaultTreeNode("raiz", null);
+
+			for (Objetivo objetivoss : objetivosRaizes) {
+				
+				TreeNode no0 = new DefaultTreeNode(objetivoss, raiz);
+
+				this.lstComponentes = servicecomponentes.listarPorObjetivo(objetivoss);
+				List<Componente> ComponentesRaizes = this.lstComponentes;
+
+				for (Componente componentes : ComponentesRaizes) {
+					
+					TreeNode no1 = new DefaultTreeNode(componentes, no0);
+					
+					this.lstActividades=serviceactividades.listarPorComponente(componentes);
+					List<Actividad> ActividadesRaizes=this.lstActividades;
+					
+					for(Actividad actividades : ActividadesRaizes) {
+						
+						TreeNode no2=new DefaultTreeNode(actividades,no1);
+					}
+
+				}
+			}
 		
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -146,6 +169,12 @@ public class ProyectosFormBean implements Serializable{
 	}
 	public void setLstActividades(List<Actividad> lstActividades) {
 		this.lstActividades = lstActividades;
+	}
+	public TreeNode getRaiz() {
+		return raiz;
+	}
+	public void setRaiz(TreeNode raiz) {
+		this.raiz = raiz;
 	}
 	
 	
