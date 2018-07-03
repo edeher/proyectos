@@ -1,8 +1,8 @@
 
 
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',34,56,'1Proyecto 1','34','45','ex')
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',34,56,'2proyecto 2','34','45','ex')
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',34,56,'3proyecto 3','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'1Proyecto 1','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'2proyecto 2','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'3proyecto 3','34','45','ex')
 
 insert into objetivo (estado,descripcion,idProyecto,tipo) values('in','pro 1-objetivo 1',1,'ob')
 insert into objetivo (estado,descripcion,idProyecto,tipo) values('in','pro 1-objetivo 2',1,'ob')
@@ -184,6 +184,19 @@ insert into autor(apellidos,categoria,direccion,email, idEscuela,estado,nombres,
 insert into fuente(descripcion) values ('1fuente 1')
 insert into fuente(descripcion) values ('2fuente 2')
 insert into fuente(descripcion) values ('3fuente 3')
+
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (15,1,1)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (17,2,1)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (19,3,1)
+
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (25,1,2)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (27,2,2)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (29,3,2)
+
+
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (25,1,3)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (37,2,3)
+insert into fuenteproyecto(monto,idFuente,idProyecto) values (39,3,3)
 
 
 

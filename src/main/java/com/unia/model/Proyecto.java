@@ -59,6 +59,10 @@ public class Proyecto implements Serializable{
 			CascadeType.REMOVE }, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Objetivo> objetivos;
 	
+	@OneToMany(mappedBy = "proyecto", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<FuenteProyecto> fuentesproyectos;
+	
 
 	public int getIdProyecto() {
 		return idProyecto;
@@ -150,6 +154,15 @@ public class Proyecto implements Serializable{
 
 	public void setObjetivos(List<Objetivo> objetivos) {
 		this.objetivos = objetivos;
+	}
+	
+
+	public List<FuenteProyecto> getFuentesproyectos() {
+		return fuentesproyectos;
+	}
+
+	public void setFuentesproyectos(List<FuenteProyecto> fuentesproyectos) {
+		this.fuentesproyectos = fuentesproyectos;
 	}
 
 	@Override

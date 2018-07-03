@@ -10,7 +10,7 @@
 
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form id="frm" enctype="multipart/form-data">
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Nombre de Proyecto"
 						style="font-weight: bold;" />
@@ -70,7 +70,48 @@
 
 
 				</h:panelGrid>
+				<p:dialog header="Fuente" id="dlgFuenteProyecto"
+					widgetVar="wdlgFuenteProyecto" modal="true">
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Fuente" />
+						<p:selectOneMenu id="cboFuente"
+							value="#{proyectosFormBean.fuenteproyecto}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{proyectosFormBean.lstFuente}" var="fp"
+								itemLabel="#{fp.descripcion}" itemValue="#{fp}" />
 
+						</p:selectOneMenu>
+						<p:outputLabel value="Monto s/." style="font-weight:bold;" />
+						<p:inputNumber value="#{proyectosFormBean.fuenteproyecto.monto}"
+							decimalSeparator="." thousandSeparator="," />
+					</h:panelGrid>
+				</p:dialog>
+				<p:separator />
+				<p:commandButton value="Fuentes S/."
+					oncomplete="PF('wdlgFuenteProyecto').show();"
+					update="frm:dlgFuenteProyecto" />
+				<p:separator />	
+				<p:dataTable id="dtFuenteProyectos"
+					value="#{proyectosFormBean.lstFuenteProyecto}" var="fpr" style="width:800px">
+					<p:column headerText="Fuente" style="width:100px">
+						<p:outputLabel value="#{fpr.fuente.descripcion}" />
+					</p:column>
+					<p:column headerText="Monto" style="width:60px">
+						<p:outputLabel value="#{fpr.monto }" />
+					</p:column>
+					<p:column style="width:30px">
+						<p:commandLink>
+							<p:graphicImage library="images" name="edit.jpg"/>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+				
+
+
+
+				<p:separator />
 				<h:panelGrid columns="2" border="2" cellpadding="20"
 					cellspacing="10">
 					<h:panelGroup>
@@ -98,16 +139,10 @@
 
 				</h:panelGrid>
 
-
-
-
-
+				
 
 			</h:form>
-
-
 		</ui:define>
-
 	</ui:composition>
 
 </body>
