@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
-import com.unia.dao.IActividadDAO;
 import com.unia.dao.IFuenteProyectoDAO;
 import com.unia.model.FuenteProyecto;
 import com.unia.model.Proyecto;

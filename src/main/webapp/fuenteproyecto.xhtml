@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+			<p:messages id="msj" autoUpdate="true" showDetail="true"
+				globalOnly="true" closable="true" />
+			<h:form id="frm">
+				<p:commandButton value="nuevo"
+					oncomplete="PF('wdlgFuenteProyecto').show();" actionListener="#{fuenteProyectoBean.limpiarControles()}"
+					update="frm:dlgFuenteProyecto" />
+				<p:dataTable id="dtFuenteProyecto"
+					value="#{fuenteProyectoBean.lstFuenteProyecto}" var="fue">
+					<p:column headerText="id" style="width:30px">
+						<p:outputLabel value="#{fue.idFuenteProyecto}" />
+					</p:column>
+					<p:column headerText="Proyecto">
+						<p:outputLabel value="#{fue.proyecto.nombre}" />
+					</p:column>
+					<p:column headerText="Fuente">
+						<p:outputLabel value="#{fue.fuente.descripcion}" />
+					</p:column>
+					<p:column headerText="Monto  ">
+						<p:outputLabel value="#{fue.monto}">
+							<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+								maxIntegerDigits="10" type="currency" locale="true" />
+						</p:outputLabel>
+					</p:column>
+					<p:column style="width:30px">
+						<p:commandLink actionListener="#{fuenteProyectoBean.seleccionar(fue)}"
+							oncomplete="PF('wdlgFuenteProyecto').show();" update="frm:dlgFuenteProyecto">
+							<p:graphicImage library="images" name="edit.jpg" />
+
+						</p:commandLink>
+
+					</p:column>
+
+				</p:dataTable>
+				<p:dialog header="#{fuenteProyectoBean.titulo}" id="dlgFuenteProyecto" widgetVar="wdlgFuenteProyecto"
+					modal="true">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Proyecto" />
+						<p:selectOneMenu id="cboProyecto"
+							value="#{fuenteProyectoBean.proyecto}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{fuenteProyectoBean.lstProyecto}" var="pr"
+								itemLabel="#{pr.nombre}" itemValue="#{pr}" />
+
+						</p:selectOneMenu>
+						<p:outputLabel value="Fuente" />
+						<p:selectOneMenu id="cboFuente"
+							value="#{fuenteProyectoBean.fuente}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{fuenteProyectoBean.lstFuente}" var="fe"
+								itemLabel="#{fe.descripcion}" itemValue="#{fe}" />
+
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Monto  s/." style="font-weight:bold;" />
+						<p:inputNumber value="#{fuenteProyectoBean.fuenteproyecto.monto}"
+							decimalSeparator="." thousandSeparator="," />
+
+					</p:panelGrid>
+					<h:panelGroup layout="block" style="float:right">
+						<p:commandButton value="Aceptar"
+							actionListener="#{fuenteProyectoBean.operar()}" ajax="false"
+							action="fuenteproyecto?faces-redirect=true" />
+						<p:commandButton value="Cancelar" immediate="true"
+							onclick="PF('wdlgFuenteProyecto').hide();" />
+					</h:panelGroup>
+
+				</p:dialog>
+
+
+
+
+			</h:form>
+
+
+
+
+		</ui:define>
+
+
+	</ui:composition>
+</body>
+</html>

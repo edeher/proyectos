@@ -62,7 +62,7 @@ public class ProyectosFormBean implements Serializable {
 	private List<Actividad> lstActividades;
 	private List<Fuente> lstFuente;
 	private List<FuenteProyecto> lstFuenteProyecto;
-
+	
 	@PostConstruct
 	public void init() {
 
@@ -81,12 +81,35 @@ public class ProyectosFormBean implements Serializable {
 			
 			this.leer(pro);
 			this.listarFuentesProyectos(pro);
+			
 			this.actualizarmonto();
 		}
 	}
 
 	public void operar() {
 
+	}
+	public void operarFuente() {
+		
+		System.out.println("llego fuente :"+proyectos.getNombre());
+		System.out.println("llego fuente :"+fuente.getDescripcion());
+		System.out.println("llego monto :"+fuenteproyecto.getMonto());
+		
+		try {
+			if(fuenteproyecto.getIdFuenteProyecto()>0) {
+				fuenteproyecto.setProyecto(proyectos);
+				fuenteproyecto.setFuente(fuente);
+				servicefueteproyecto.modificar(fuenteproyecto);
+				
+			}else {
+				fuenteproyecto.setProyecto(proyectos);
+				fuenteproyecto.setFuente(fuente);
+				servicefueteproyecto.registrar(fuenteproyecto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	public void leer(Proyecto p) {
@@ -162,7 +185,7 @@ public class ProyectosFormBean implements Serializable {
 			// TODO: handle exception
 		}
 	}
-
+	
 	public void actualizarmonto() {
 
 		try {
@@ -179,6 +202,7 @@ public class ProyectosFormBean implements Serializable {
 		}
 	}
 
+	
 	public Proyecto getProyectos() {
 		return proyectos;
 	}
