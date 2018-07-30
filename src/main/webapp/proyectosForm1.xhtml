@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
+		<ui:define name="content">
+			<h:form id="frm">
+
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nombre de Proyecto"
+						style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.nombre}" />
+
+
+					<p:outputLabel value="Fecha de Presentacion"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.fechaPresentacion}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Fecha de Inicio" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.fechaInicio}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Duracion" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.perfilduracion}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Vigencia" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tiempovigencia}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Aprobado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoAprobado}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Restante" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoRestante}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Tipo de Financiamiento"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tipofinanciamiento}">
+						<f:converter converterId="tipoFinanciamiento" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Estado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.estado}">
+						<f:converter converterId="estadoProyecto" />
+					</p:outputLabel>
+				</p:panelGrid>
+				<p:separator />
+				<p:commandButton value="Fuentes "
+					oncomplete="PF('wdlgFuente').show();" update="frm:dlgFuente" />
+
+				<p:separator />
+
+				<p:dataTable id="dtfuentes"
+					value="#{proyectosFormBean.lstFuenteProyecto}" var="fuen">
+					<p:column headerText="id">
+						<p:outputLabel value="#{fuen.idFuenteProyecto}" />
+					</p:column>
+					<p:column headerText="Fuente">
+						<p:outputLabel value="#{fuen.fuente.descripcion}" />
+					</p:column>
+					<p:column headerText="Monto">
+						<p:outputLabel value="#{fuen.monto}">
+							<f:convertNumber currencySymbol="S/." maxFractionDigits="2"
+								maxIntegerDigits="10" type="currency" locale="true" />
+						</p:outputLabel>
+					</p:column>
+				</p:dataTable>
+				<p:separator />
+				<p:treeTable id="dtObjetivos" value="#{proyectosFormBean.raiz}"
+					var="ob">
+					<f:facet name="Header"> Objetivos</f:facet>
+					<p:column headerText="Descripcion">
+						<p:outputLabel value="#{ob.descripcion}" />
+					</p:column>
+					<p:column headerText="Tipo">
+						<p:outputLabel value="#{ob.tipo}">
+							<f:converter converterId="tipoTreeNode" />
+						</p:outputLabel>
+					</p:column>
+
+				</p:treeTable>
+
+				<p:dialog header="Fuente" id="dlgFuente" widgetVar="wdlgFuente"
+					modal="true">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Fuente" />
+						<p:selectOneMenu id="cboFuente"
+							value="#{proyectosFormBean.fuenteproyecto}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{proyectosFormBean.lstFuente}" var="fp"
+								itemLabel="#{fp.descripcion}" itemValue="#{fp}" />
+
+						</p:selectOneMenu>
+						<p:outputLabel value="Monto  s/." />
+						<p:inputNumber value="#{fuenteProyectoBean.fuenteproyecto.monto}"
+							decimalSeparator="." thousandSeparator="," />
+
+
+					</p:panelGrid>
+					<h:panelGroup layout="block" style="float:right">
+						<p:commandButton value="Aceptar"
+							actionListener="#{proyectosFormBean.operarFuente() }"
+							ajax="false" action="proyectosForm1?faces-redirect=true" />
+						<p:commandButton value="Cancelar" immediate="true"
+							onclick="PF('wdlgFuente').hide();" />
+					</h:panelGroup>
+				</p:dialog>
+
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

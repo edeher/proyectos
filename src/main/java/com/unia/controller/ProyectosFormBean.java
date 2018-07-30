@@ -102,7 +102,7 @@ public class ProyectosFormBean implements Serializable {
 				servicefueteproyecto.modificar(fuenteproyecto);
 				
 			}else {
-				fuenteproyecto.setProyecto(proyectos);
+				fuenteproyecto.setProyecto(this.proyectos);
 				fuenteproyecto.setFuente(fuente);
 				servicefueteproyecto.registrar(fuenteproyecto);
 			}

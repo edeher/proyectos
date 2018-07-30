@@ -11,8 +11,62 @@
 	<ui:composition template="/WEB-INF/templates/plantilla.xhtml">
 		<ui:define name="content">
 			<h:form id="frm" enctype="multipart/form-data">
-				<h:panelGrid columns="2">
+				<p:panelGrid columns="2">
 					<p:outputLabel value="Nombre de Proyecto"
+						style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.nombre}" />
+
+
+					<p:outputLabel value="Fecha de Presentacion"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.fechaPresentacion}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Fecha de Inicio" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.fechaInicio}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Duracion" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.perfilduracion}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Vigencia" style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tiempovigencia}"> Años
+						
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Aprobado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoAprobado}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Monto Restante" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.montoRestante}">
+						<f:convertNumber currencySymbol="s/." maxFractionDigits="2"
+							maxIntegerDigits="10" type="currency" locale="true" />
+					</p:outputLabel>
+
+					<p:outputLabel value="Tipo de Financiamiento"
+						style="font-weight: bold;" />
+					<p:outputLabel
+						value="#{proyectosFormBean.proyectos.tipofinanciamiento}">
+						<f:converter converterId="tipoFinanciamiento" />
+					</p:outputLabel>
+
+
+					<p:outputLabel value="Estado" style="font-weight: bold;" />
+					<p:outputLabel value="#{proyectosFormBean.proyectos.estado}">
+						<f:converter converterId="estadoProyecto" />
+					</p:outputLabel>
+<p:outputLabel value="Nombre de Proyecto"
 						style="font-weight: bold;" />
 					<p:outputLabel value="#{proyectosFormBean.proyectos.nombre}" />
 
@@ -68,8 +122,7 @@
 					</p:outputLabel>
 
 
-
-				</h:panelGrid>
+				</p:panelGrid>
 
 				<p:separator />
 
@@ -99,9 +152,8 @@
 
 				<p:separator />
 
-				<h:panelGrid columns="2" border="2" cellpadding="20"
-					cellspacing="10">
-					<h:panelGroup>
+				
+					
 						<p:treeTable id="dtOjetivos" value="#{proyectosFormBean.raiz}"
 							var="ob">
 							<f:facet name="header">
@@ -121,14 +173,14 @@
 						</p:treeTable>
 
 
-					</h:panelGroup>
+				
 
 
-				</h:panelGrid>
+				
 				<p:separator />
 				<p:dialog header="Fuente" id="dlgFuenteProyecto"
 					widgetVar="wdlgFuenteProyecto" modal="true">
-					<h:panelGrid columns="2">
+					<p:panelGrid columns="2">
 						<p:outputLabel value="Fuente" />
 						<p:selectOneMenu id="cboFuente"
 							value="#{proyectosFormBean.fuenteproyecto}"
@@ -142,7 +194,7 @@
 						<p:outputLabel value="Monto s/." style="font-weight:bold;" />
 						<p:inputNumber value="#{proyectosFormBean.fuenteproyecto.monto }"
 							decimalSeparator="." thousandSeparator="," />
-					</h:panelGrid>
+					</p:panelGrid>
 					<h:panelGroup layout="block" style="float:right">
 						<p:commandButton value="Aceptar"
 							actionListener="#{proyectosFormBean.operarFuente() }"
