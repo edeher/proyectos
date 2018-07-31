@@ -25,6 +25,7 @@ import com.unia.service.IFuenteProyectoService;
 import com.unia.service.IFuenteService;
 import com.unia.service.IObjetivoService;
 import com.unia.service.IProyectoService;
+import com.unia.util.MensajeManager;
 
 @Named
 @ViewScoped
@@ -45,8 +46,7 @@ public class ProyectosFormBean implements Serializable {
 
 	@Inject
 	private IProyectoService serviceproyectos;
-	@Inject
-	private IObjetivoService serviceobjetivos;
+	
 	@Inject
 	private IComponenteService servicecomponentes;
 	@Inject
@@ -62,6 +62,8 @@ public class ProyectosFormBean implements Serializable {
 	private List<Actividad> lstActividades;
 	private List<Fuente> lstFuente;
 	private List<FuenteProyecto> lstFuenteProyecto;
+	
+	private String titulo;
 	
 	@PostConstruct
 	public void init() {
@@ -85,33 +87,55 @@ public class ProyectosFormBean implements Serializable {
 			this.actualizarmonto();
 		}
 	}
+public void limpiarControles() {
+	
+	this.titulo="Nuevo";
+}
 
-	public void operar() {
+
+public void operar() {
 
 	}
 	public void operarFuente() {
 		
-		System.out.println("llego fuente :"+proyectos.getNombre());
-		System.out.println("llego fuente :"+fuente.getDescripcion());
-		System.out.println("llego monto :"+fuenteproyecto.getMonto());
+
 		
 		try {
 			if(fuenteproyecto.getIdFuenteProyecto()>0) {
 				fuenteproyecto.setProyecto(proyectos);
 				fuenteproyecto.setFuente(fuente);
 				servicefueteproyecto.modificar(fuenteproyecto);
+				MensajeManager.mostrarMensaje("Aviso", "Modificación Exitosa", "INFO");
 				
 			}else {
-				fuenteproyecto.setProyecto(this.proyectos);
+				fuenteproyecto.setProyecto(proyectos);
 				fuenteproyecto.setFuente(fuente);
 				servicefueteproyecto.registrar(fuenteproyecto);
+				MensajeManager.mostrarMensaje("Aviso", "Registro Exitoso", "INFO");
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
 		}
 		
 	}
 
+	public void seleccionarFuente(FuenteProyecto fuen) {
+		try {
+			
+			this.fuenteproyecto=servicefueteproyecto.listarPorId(fuen);
+			
+			this.proyectos=fuenteproyecto.getProyecto();
+			this.fuente=fuenteproyecto.getFuente();
+			
+			
+		} catch (Exception e) {
+			MensajeManager.mostrarMensaje("Aviso", e.getMessage(), "FATAL");
+		}finally {
+			this.titulo="Modificar";
+		}
+		
+	}
+	
 	public void leer(Proyecto p) {
 
 		try {
@@ -194,7 +218,7 @@ public class ProyectosFormBean implements Serializable {
 
 				montos += fuentproyec.getMonto();
 			}
-			System.out.println(" monto : " + montos);
+		
 			this.proyectos.setMontoAprobado(montos);
 			serviceproyectos.modificar(proyectos);
 		} catch (Exception e) {
@@ -297,6 +321,12 @@ public class ProyectosFormBean implements Serializable {
 
 	public void setLstFuenteProyecto(List<FuenteProyecto> lstFuenteProyecto) {
 		this.lstFuenteProyecto = lstFuenteProyecto;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 }

@@ -1,8 +1,8 @@
 
 
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'1Proyecto 1','34','45','ex')
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'2proyecto 2','34','45','ex')
-insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,56,'3proyecto 3','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,10,'1Proyecto 1','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,10,'2proyecto 2','34','45','ex')
+insert into proyecto (estado,fechaInicio,fechaPresentacion,montoAprobado,montoRestante,nombre,perfilduracion,tiempovigencia,tipofinanciamiento) values('in','2018-06-05','2019-06-06',0,10,'3proyecto 3','34','45','ex')
 
 insert into objetivo (estado,descripcion,idProyecto,tipo) values('in','pro 1-objetivo 1',1,'ob')
 insert into objetivo (estado,descripcion,idProyecto,tipo) values('in','pro 1-objetivo 2',1,'ob')

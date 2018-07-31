@@ -67,9 +67,13 @@
 						<f:converter converterId="estadoProyecto" />
 					</p:outputLabel>
 				</p:panelGrid>
+
 				<p:separator />
+
 				<p:commandButton value="Fuentes "
-					oncomplete="PF('wdlgFuente').show();" update="frm:dlgFuente" />
+					oncomplete="PF('wdlgFuente').show();"
+					actionListener="#{proyectosFormBean.limpiarControles()}"
+					update="frm:dlgFuente" />
 
 				<p:separator />
 
@@ -87,8 +91,19 @@
 								maxIntegerDigits="10" type="currency" locale="true" />
 						</p:outputLabel>
 					</p:column>
+					<p:column style="width:30px">
+						<p:commandLink
+							actionListener="#{proyectosFormBean.seleccionarFuente(fuen)}"
+							oncomplete="PF('wdlgFuente').show();" update="frm:dlgFuente">
+							<p:graphicImage library="images" name="edit.jpg" />
+
+						</p:commandLink>
+
+					</p:column>
 				</p:dataTable>
+
 				<p:separator />
+
 				<p:treeTable id="dtObjetivos" value="#{proyectosFormBean.raiz}"
 					var="ob">
 					<f:facet name="Header"> Objetivos</f:facet>
@@ -103,12 +118,12 @@
 
 				</p:treeTable>
 
-				<p:dialog header="Fuente" id="dlgFuente" widgetVar="wdlgFuente"
+				<p:dialog header="#{proyectosFormBean.titulo }" id="dlgFuente" widgetVar="wdlgFuente"
 					modal="true">
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Fuente" />
 						<p:selectOneMenu id="cboFuente"
-							value="#{proyectosFormBean.fuenteproyecto}"
+							value="#{proyectosFormBean.fuente}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem itemLabel="--seleccione--" itemValue="#{null}"
 								noSelectionOption="true" />
@@ -117,15 +132,15 @@
 
 						</p:selectOneMenu>
 						<p:outputLabel value="Monto  s/." />
-						<p:inputNumber value="#{fuenteProyectoBean.fuenteproyecto.monto}"
+						<p:inputNumber value="#{proyectosFormBean.fuenteproyecto.monto}"
 							decimalSeparator="." thousandSeparator="," />
 
 
 					</p:panelGrid>
 					<h:panelGroup layout="block" style="float:right">
 						<p:commandButton value="Aceptar"
-							actionListener="#{proyectosFormBean.operarFuente() }"
-							ajax="false" action="proyectosForm1?faces-redirect=true" />
+							actionListener="#{proyectosFormBean.operarFuente()}" ajax="false"
+							action="index?faces-redirect=true" />
 						<p:commandButton value="Cancelar" immediate="true"
 							onclick="PF('wdlgFuente').hide();" />
 					</h:panelGroup>
